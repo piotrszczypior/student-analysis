@@ -1,0 +1,89 @@
+﻿<DeploymentSnapshot xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ddl2="http://schemas.microsoft.com/analysisservices/2003/engine/2" xmlns:ddl2_2="http://schemas.microsoft.com/analysisservices/2003/engine/2/2" xmlns:ddl100_100="http://schemas.microsoft.com/analysisservices/2008/engine/100/100" xmlns:ddl200="http://schemas.microsoft.com/analysisservices/2010/engine/200" xmlns:ddl200_200="http://schemas.microsoft.com/analysisservices/2010/engine/200/200" xmlns:ddl300="http://schemas.microsoft.com/analysisservices/2011/engine/300" xmlns:ddl300_300="http://schemas.microsoft.com/analysisservices/2011/engine/300/300" xmlns:ddl400="http://schemas.microsoft.com/analysisservices/2012/engine/400" xmlns:ddl400_400="http://schemas.microsoft.com/analysisservices/2012/engine/400/400" xmlns:ddl500="http://schemas.microsoft.com/analysisservices/2013/engine/500" xmlns:ddl500_500="http://schemas.microsoft.com/analysisservices/2013/engine/500/500" xmlns:dwd="http://schemas.microsoft.com/DataWarehouse/Designer/1.0">
+  <Target>
+    <Database>StudentGradesAnalysis</Database>
+    <Server>localhost</Server>
+    <ConnectionString>Data Source=localhost;Timeout=0</ConnectionString>
+  </Target>
+  <Options>
+    <TransactionalDeployment>false</TransactionalDeployment>
+    <PartitionDeployment>DeployPartitions</PartitionDeployment>
+    <RoleDeployment>DeployRolesRetainMembers</RoleDeployment>
+    <ProcessingOption>Default</ProcessingOption>
+    <OutputScript></OutputScript>
+    <ImpactAnalysisFile></ImpactAnalysisFile>
+    <ConfigurationSettingsDeployment>Deploy</ConfigurationSettingsDeployment>
+    <OptimizationSettingsDeployment>Deploy</OptimizationSettingsDeployment>
+    <WriteBackTableCreation>UseExisting</WriteBackTableCreation>
+  </Options>
+  <Snapshot>
+    <ObjectSnapshots>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.RelationalDataSource</Type>
+        <TimeStamp>R0tNQY6SvgrvaAEzCg2869s4Urc=12/29/2025 11:41:04 PM12/29/2025 6:48:05 PM</TimeStamp>
+        <ID>
+          <String>Student Analysis DB</String>
+        </ID>
+      </ObjectSnapshot>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.DataSourceView</Type>
+        <TimeStamp>wAoGisa/3WdWMIIbdejx7zP4bkA=12/29/2025 7:40:47 PM12/29/2025 6:49:02 PM</TimeStamp>
+        <ID>
+          <String>Student Analysis DB</String>
+        </ID>
+      </ObjectSnapshot>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.Dimension</Type>
+        <TimeStamp>TxMOA61lQJBg6QgUJlfrht6pJsQ=12/29/2025 8:14:46 PM12/29/2025 8:14:13 PM</TimeStamp>
+        <ID>
+          <String>Dim Semester</String>
+        </ID>
+      </ObjectSnapshot>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.Dimension</Type>
+        <TimeStamp>iRErbuNqI/xr3IYA8G9WtPS4Ra4=12/29/2025 8:15:22 PM12/29/2025 8:15:22 PM</TimeStamp>
+        <ID>
+          <String>Dim Students</String>
+        </ID>
+      </ObjectSnapshot>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.Dimension</Type>
+        <TimeStamp>FzleaZgMeHiw9Y0bhN3Cf19AkeY=12/29/2025 8:16:59 PM12/29/2025 8:16:59 PM</TimeStamp>
+        <ID>
+          <String>Dim Courses</String>
+        </ID>
+      </ObjectSnapshot>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.Dimension</Type>
+        <TimeStamp>OI6yndta9MbwwZ3yurGFyrPjE0Y=12/29/2025 8:27:08 PM12/29/2025 8:27:08 PM</TimeStamp>
+        <ID>
+          <String>Fact Grades</String>
+        </ID>
+      </ObjectSnapshot>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.Dimension</Type>
+        <TimeStamp>spC0aWrE4u+jSH4yDt4IE/IhNGA=12/30/2025 12:07:22 AM12/30/2025 12:02:34 AM</TimeStamp>
+        <ID>
+          <String>Dim Teachers</String>
+        </ID>
+      </ObjectSnapshot>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.Cube</Type>
+        <TimeStamp>qierWcZK0n6d7E4SN7GhwB/dUtU=12/29/2025 11:59:04 PM12/29/2025 8:30:11 PMItWRHJ32rQQ01cWyi8t5YjKHjoU=12/29/2025 8:30:11 PM12/29/2025 8:30:11 PM</TimeStamp>
+        <ID>
+          <String>Student Analysis DB</String>
+        </ID>
+      </ObjectSnapshot>
+    </ObjectSnapshots>
+    <DatabaseSnapshot>
+      <Type>Microsoft.AnalysisServices.Database</Type>
+      <TimeStamp>KNYoFP5OOWBBR8vUIsr1+yRgNP4=12/29/2025 6:35:17 PM12/29/2025 6:35:17 PM</TimeStamp>
+      <ID>
+        <String>StudentGradesAnalysis</String>
+      </ID>
+    </DatabaseSnapshot>
+    <Granularity>Coarse</Granularity>
+  </Snapshot>
+  <AssemblyLocations />
+  <ProcessingComplete>false</ProcessingComplete>
+  <LastDeployed>2025-12-29T23:07:53.666667Z</LastDeployed>
+</DeploymentSnapshot>
