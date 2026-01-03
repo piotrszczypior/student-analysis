@@ -39,6 +39,18 @@
       <Name>Dim Teachers.dim</Name>
       <FullPath>Dim Teachers.dim</FullPath>
     </ProjectItem>
+    <ProjectItem>
+      <Name>Dim Teacher Titles.dim</Name>
+      <FullPath>Dim Teacher Titles.dim</FullPath>
+    </ProjectItem>
+    <ProjectItem>
+      <Name>Dim Pass Status.dim</Name>
+      <FullPath>Dim Pass Status.dim</FullPath>
+    </ProjectItem>
+    <ProjectItem>
+      <Name>Dim Exam Type.dim</Name>
+      <FullPath>Dim Exam Type.dim</FullPath>
+    </ProjectItem>
   </Dimensions>
   <DataSources>
     <ProjectItem>

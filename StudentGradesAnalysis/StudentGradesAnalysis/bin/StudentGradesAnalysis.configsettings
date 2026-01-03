@@ -26,6 +26,15 @@
       <Dimension>
         <ID>Dim Teachers</ID>
       </Dimension>
+      <Dimension>
+        <ID>Dim Teacher Titles</ID>
+      </Dimension>
+      <Dimension>
+        <ID>Dim Pass Status</ID>
+      </Dimension>
+      <Dimension>
+        <ID>Dim Exam Type</ID>
+      </Dimension>
     </Dimensions>
     <Cubes>
       <Cube>

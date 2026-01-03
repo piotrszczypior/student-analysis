@@ -61,14 +61,35 @@
       </ObjectSnapshot>
       <ObjectSnapshot>
         <Type>Microsoft.AnalysisServices.Dimension</Type>
-        <TimeStamp>spC0aWrE4u+jSH4yDt4IE/IhNGA=12/30/2025 12:07:22 AM12/30/2025 12:02:34 AM</TimeStamp>
+        <TimeStamp>vEQI8XqUo/HtPZOTl3ylpkiArxU=1/3/2026 11:02:09 AM1/3/2026 11:02:09 AM</TimeStamp>
         <ID>
           <String>Dim Teachers</String>
         </ID>
       </ObjectSnapshot>
       <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.Dimension</Type>
+        <TimeStamp>HFR9Zy4xRF7+j1s3zbSdL/i+qbA=1/3/2026 11:04:23 AM12/30/2025 12:06:21 AM</TimeStamp>
+        <ID>
+          <String>Dim Teacher Titles</String>
+        </ID>
+      </ObjectSnapshot>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.Dimension</Type>
+        <TimeStamp>2OeajNX0rpAUKmEk5qkCHOdBcm4=1/3/2026 11:59:15 AM1/3/2026 11:59:15 AM</TimeStamp>
+        <ID>
+          <String>Dim Pass Status</String>
+        </ID>
+      </ObjectSnapshot>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.Dimension</Type>
+        <TimeStamp>SBup9P9iOVhALR3T35mjy+lI/wc=1/3/2026 11:59:59 AM1/3/2026 11:59:59 AM</TimeStamp>
+        <ID>
+          <String>Dim Exam Type</String>
+        </ID>
+      </ObjectSnapshot>
+      <ObjectSnapshot>
         <Type>Microsoft.AnalysisServices.Cube</Type>
-        <TimeStamp>qierWcZK0n6d7E4SN7GhwB/dUtU=12/29/2025 11:59:04 PM12/29/2025 8:30:11 PMItWRHJ32rQQ01cWyi8t5YjKHjoU=12/29/2025 8:30:11 PM12/29/2025 8:30:11 PM</TimeStamp>
+        <TimeStamp>nHhYeeY58tSLFbDyxnNWlZ2i094=1/3/2026 12:00:52 PM12/29/2025 8:30:11 PMItWRHJ32rQQ01cWyi8t5YjKHjoU=12/29/2025 8:30:11 PM12/29/2025 8:30:11 PM</TimeStamp>
         <ID>
           <String>Student Analysis DB</String>
         </ID>
@@ -84,6 +105,6 @@
     <Granularity>Coarse</Granularity>
   </Snapshot>
   <AssemblyLocations />
-  <ProcessingComplete>false</ProcessingComplete>
-  <LastDeployed>2025-12-29T23:07:53.666667Z</LastDeployed>
+  <ProcessingComplete>true</ProcessingComplete>
+  <LastDeployed>2026-01-03T11:08:00.346667Z</LastDeployed>
 </DeploymentSnapshot>
