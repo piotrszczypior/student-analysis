@@ -48,6 +48,14 @@
               </Partition>
             </Partitions>
           </MeasureGroup>
+          <MeasureGroup>
+            <ID>Dim Teacher Workload</ID>
+            <Partitions>
+              <Partition>
+                <ID>Dim Teacher Workload</ID>
+              </Partition>
+            </Partitions>
+          </MeasureGroup>
         </MeasureGroups>
       </Cube>
     </Cubes>

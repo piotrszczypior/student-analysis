@@ -12,8 +12,8 @@
   DTS:LocaleID="1033"
   DTS:MaxErrorCount="0"
   DTS:ObjectName="Package"
-  DTS:VersionBuild="138"
-  DTS:VersionGUID="{D54A90E4-AF35-427E-ABF7-A8A1A56B5B4A}">
+  DTS:VersionBuild="140"
+  DTS:VersionGUID="{EE311F05-C5EF-4142-A924-B9C448871A09}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -427,7 +427,7 @@
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
               SQLTask:Connection="{7E33B311-8F34-4A48-90C3-881CE798482E}"
-              SQLTask:SqlStatementSource="ALTER TABLE stg_teachers&#xA;ALTER COLUMN gender VARCHAR(1);&#xA;&#xA;UPDATE stg_teachers&#xA;SET gender = CASE &#xA;    WHEN gender = '1' THEN 'M'&#xA;    WHEN gender = '2' THEN 'K'&#xA;    WHEN gender IS NULL then 'U'&#xA;END;&#xA;&#xA;UPDATE stg_teachers &#xA;SET institute = 'UNK'&#xA;WHERE institute IS NULL OR institute = '';" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              SQLTask:SqlStatementSource="ALTER TABLE stg_teachers&#xA;ALTER COLUMN gender VARCHAR(1);&#xA;&#xA;UPDATE stg_teachers&#xA;SET gender = CASE &#xA;    WHEN gender = '1' THEN 'M'&#xA;    WHEN gender = '2' THEN 'K'&#xA;    ELSE 'U'&#xA;END;&#xA;&#xA;UPDATE stg_teachers &#xA;SET institute = 'UNK'&#xA;WHERE institute IS NULL OR institute = '';&#xA;&#xA;UPDATE stg_teachers &#xA;SET faculty = -1&#xA;WHERE faculty IS NULL;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
           </DTS:ObjectData>
         </DTS:Executable>
       </DTS:Executables>
@@ -2820,6 +2820,10 @@
       <GraphLayout
         Capacity="64" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
+          Size="199,42"
+          Id="Package\Data consistency\Consistency course group"
+          TopLeft="394,84" />
+        <NodeLayout
           Size="231,42"
           Id="Package\Data consistency\Consistency FK grades - courses"
           TopLeft="375,168" />
@@ -2896,32 +2900,6 @@
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\Data consistency.PrecedenceConstraints[Constraint 3]"
-          TopLeft="296,190">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="79,0"
-              Start="0,0"
-              End="71.5,0">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="71.5,0" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="199,42"
-          Id="Package\Data consistency\Consistency course group"
-          TopLeft="394,84" />
-        <EdgeLayout
           Id="Package\Data consistency.PrecedenceConstraints[Constraint 2]"
           TopLeft="266,105.5">
           <EdgeLayout.Curve>
@@ -2935,6 +2913,28 @@
                   Capacity="5">
                   <mssgle:LineSegment
                     End="120.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Data consistency.PrecedenceConstraints[Constraint 3]"
+          TopLeft="296,190">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="79,0"
+              Start="0,0"
+              End="71.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="71.5,0" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -2985,6 +2985,26 @@
           Id="Package\Data consistency"
           TopLeft="31,644" />
         <NodeLayout
+          Size="119,42"
+          Id="Package\Data enrichment\clean up"
+          TopLeft="200,623" />
+        <NodeLayout
+          Size="135,42"
+          Id="Package\Data enrichment\dim courses"
+          TopLeft="310,531" />
+        <NodeLayout
+          Size="140,42"
+          Id="Package\Data enrichment\dim students"
+          TopLeft="315,452" />
+        <NodeLayout
+          Size="160,42"
+          Id="Package\Data enrichment\dim teacher titles"
+          TopLeft="74,529" />
+        <NodeLayout
+          Size="139,42"
+          Id="Package\Data enrichment\dim teachers"
+          TopLeft="84,453" />
+        <NodeLayout
           Size="160,42"
           Id="Package\Data enrichment\Fact table grades"
           TopLeft="180,239" />
@@ -3008,6 +3028,14 @@
           Size="169,42"
           Id="Package\Data enrichment\semester dim table"
           TopLeft="169,174" />
+        <NodeLayout
+          Size="208,42"
+          Id="Package\Data enrichment\Student workload dim table"
+          TopLeft="160,374" />
+        <NodeLayout
+          Size="210,42"
+          Id="Package\Data enrichment\Teacher workload dim table"
+          TopLeft="157,307" />
         <EdgeLayout
           Id="Package\Data enrichment.PrecedenceConstraints[Constraint]"
           TopLeft="227,46.5">
@@ -3056,6 +3084,62 @@
                     Point3="-249.5,18.5" />
                   <mssgle:LineSegment
                     End="-249.5,21.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Data enrichment.PrecedenceConstraints[Constraint 10]"
+          TopLeft="234,551">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="76,0"
+              Start="0,0"
+              End="68.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="68.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Data enrichment.PrecedenceConstraints[Constraint 11]"
+          TopLeft="377.5,573">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-118,50"
+              Start="0,0"
+              End="-118,42.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,21" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,21"
+                    Point2="0,25"
+                    Point3="-4,25" />
+                  <mssgle:LineSegment
+                    End="-114,25" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-114,25"
+                    Point2="-118,25"
+                    Point3="-118,29" />
+                  <mssgle:LineSegment
+                    End="-118,42.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -3142,10 +3226,6 @@
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="210,42"
-          Id="Package\Data enrichment\Teacher workload dim table"
-          TopLeft="157,307" />
         <EdgeLayout
           Id="Package\Data enrichment.PrecedenceConstraints[Constraint 5]"
           TopLeft="261,281">
@@ -3168,10 +3248,6 @@
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="208,42"
-          Id="Package\Data enrichment\Student workload dim table"
-          TopLeft="160,374" />
         <EdgeLayout
           Id="Package\Data enrichment.PrecedenceConstraints[Constraint 6]"
           TopLeft="263,349">
@@ -3194,10 +3270,6 @@
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="139,42"
-          Id="Package\Data enrichment\dim teachers"
-          TopLeft="84,453" />
         <EdgeLayout
           Id="Package\Data enrichment.PrecedenceConstraints[Constraint 7]"
           TopLeft="264,416">
@@ -3232,18 +3304,6 @@
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="140,42"
-          Id="Package\Data enrichment\dim students"
-          TopLeft="315,452" />
-        <NodeLayout
-          Size="160,42"
-          Id="Package\Data enrichment\dim teacher titles"
-          TopLeft="74,529" />
-        <NodeLayout
-          Size="135,42"
-          Id="Package\Data enrichment\dim courses"
-          TopLeft="310,531" />
         <EdgeLayout
           Id="Package\Data enrichment.PrecedenceConstraints[Constraint 8]"
           TopLeft="223,473.5">
@@ -3292,66 +3352,6 @@
                     Point3="-231,21.5" />
                   <mssgle:LineSegment
                     End="-231,27.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Data enrichment.PrecedenceConstraints[Constraint 10]"
-          TopLeft="234,551">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="76,0"
-              Start="0,0"
-              End="68.5,0">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="68.5,0" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="119,42"
-          Id="Package\Data enrichment\clean up"
-          TopLeft="200,623" />
-        <EdgeLayout
-          Id="Package\Data enrichment.PrecedenceConstraints[Constraint 11]"
-          TopLeft="377.5,573">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="-118,50"
-              Start="0,0"
-              End="-118,42.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,21" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,21"
-                    Point2="0,25"
-                    Point3="-4,25" />
-                  <mssgle:LineSegment
-                    End="-114,25" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-114,25"
-                    Point2="-118,25"
-                    Point3="-118,29" />
-                  <mssgle:LineSegment
-                    End="-118,42.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
