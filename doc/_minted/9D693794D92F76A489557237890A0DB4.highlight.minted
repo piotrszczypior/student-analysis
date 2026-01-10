@@ -1,0 +1,6 @@
+\begin{MintedVerbatim}[commandchars=\\\{\}]
+\PYG{+w}{  }\PYG{k}{ALTER}\PYG{+w}{ }\PYG{k}{TABLE}\PYG{+w}{ }\PYG{n}{stg\PYGZus{}grades}
+\PYG{+w}{  }\PYG{k}{ADD}\PYG{+w}{ }\PYG{p}{[}\PYG{n}{semester\PYGZus{}type}\PYG{p}{]}\PYG{+w}{ }\PYG{n+nb}{varchar}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{,}
+\PYG{+w}{      }\PYG{p}{[}\PYG{n}{study\PYGZus{}year}\PYG{p}{]}\PYG{+w}{ }\PYG{n+nb}{int}\PYG{p}{,}
+\PYG{+w}{      }\PYG{p}{[}\PYG{n}{pass}\PYG{p}{]}\PYG{+w}{ }\PYG{n+nb}{bit}\PYG{p}{;}
+\end{MintedVerbatim}

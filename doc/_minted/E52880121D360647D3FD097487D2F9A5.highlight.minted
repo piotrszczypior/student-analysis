@@ -1,0 +1,9 @@
+\begin{MintedVerbatim}[commandchars=\\\{\}]
+\PYG{+w}{  }\PYG{k}{UPDATE}\PYG{+w}{ }\PYG{n}{stg\PYGZus{}course\PYGZus{}group}
+\PYG{+w}{  }\PYG{k}{SET}\PYG{+w}{ }\PYG{n}{course\PYGZus{}type}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{k}{CASE}
+\PYG{+w}{        }\PYG{k}{WHEN}\PYG{+w}{ }\PYG{n}{course}\PYG{+w}{ }\PYG{k}{IS}\PYG{+w}{ }\PYG{k}{NULL}\PYG{+w}{ }\PYG{k}{THEN}\PYG{+w}{ }\PYG{l+s+s1}{\PYGZsq{}U\PYGZsq{}}
+\PYG{+w}{        }\PYG{k}{WHEN}\PYG{+w}{ }\PYG{k}{UPPER}\PYG{p}{(}\PYG{k}{RIGHT}\PYG{p}{(}\PYG{n}{course}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{)}\PYG{+w}{ }\PYG{k}{NOT}\PYG{+w}{ }\PYG{k}{IN}\PYG{+w}{ }\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}W\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s+s1}{\PYGZsq{}L\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s+s1}{\PYGZsq{}C\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s+s1}{\PYGZsq{}P\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s+s1}{\PYGZsq{}S\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s+s1}{\PYGZsq{}E\PYGZsq{}}\PYG{p}{)}
+\PYG{+w}{             }\PYG{k}{THEN}\PYG{+w}{ }\PYG{l+s+s1}{\PYGZsq{}U\PYGZsq{}}
+\PYG{+w}{        }\PYG{k}{ELSE}\PYG{+w}{ }\PYG{k}{UPPER}\PYG{p}{(}\PYG{k}{RIGHT}\PYG{p}{(}\PYG{n}{course}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{)}
+\PYG{+w}{  }\PYG{k}{END}\PYG{p}{;}
+\end{MintedVerbatim}

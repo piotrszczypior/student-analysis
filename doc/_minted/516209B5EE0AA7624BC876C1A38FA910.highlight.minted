@@ -1,0 +1,8 @@
+\begin{MintedVerbatim}[commandchars=\\\{\}]
+\PYG{+w}{  }\PYG{k}{INSERT}\PYG{+w}{ }\PYG{k}{INTO}\PYG{+w}{ }\PYG{n}{stg\PYGZus{}teachers}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{teacher\PYGZus{}id}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{gender}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{faculty}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{institute}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{title\PYGZus{}id}\PYG{p}{)}
+\PYG{+w}{  }\PYG{k}{SELECT}\PYG{+w}{ }\PYG{k}{g}\PYG{p}{.}\PYG{n}{teacher\PYGZus{}id}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s+s1}{\PYGZsq{}U\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{k}{NULL}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s+s1}{\PYGZsq{}UNK\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{0}
+\PYG{+w}{  }\PYG{k}{FROM}\PYG{+w}{ }\PYG{n}{stg\PYGZus{}grades}\PYG{+w}{ }\PYG{k}{AS}\PYG{+w}{ }\PYG{k}{g}
+\PYG{+w}{  }\PYG{k}{LEFT}\PYG{+w}{ }\PYG{k}{JOIN}\PYG{+w}{ }\PYG{n}{stg\PYGZus{}teachers}\PYG{+w}{ }\PYG{k}{AS}\PYG{+w}{ }\PYG{n}{t}\PYG{+w}{ }\PYG{k}{ON}\PYG{+w}{ }\PYG{k}{g}\PYG{p}{.}\PYG{n}{teacher\PYGZus{}id}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{t}\PYG{p}{.}\PYG{n}{teacher\PYGZus{}id}
+\PYG{+w}{  }\PYG{k}{WHERE}\PYG{+w}{ }\PYG{n}{t}\PYG{p}{.}\PYG{n}{teacher\PYGZus{}id}\PYG{+w}{ }\PYG{k}{IS}\PYG{+w}{ }\PYG{k}{NULL}
+\PYG{+w}{  }\PYG{k}{GROUP}\PYG{+w}{ }\PYG{k}{BY}\PYG{+w}{ }\PYG{k}{g}\PYG{p}{.}\PYG{n}{teacher\PYGZus{}id}\PYG{p}{;}
+\end{MintedVerbatim}

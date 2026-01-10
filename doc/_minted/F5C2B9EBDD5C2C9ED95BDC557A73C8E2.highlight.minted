@@ -1,0 +1,8 @@
+\begin{MintedVerbatim}[commandchars=\\\{\}]
+\PYG{+w}{  }\PYG{k}{UPDATE}\PYG{+w}{ }\PYG{n}{stg\PYGZus{}teachers}
+\PYG{+w}{  }\PYG{k}{SET}\PYG{+w}{ }\PYG{n}{gender}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{k}{CASE}
+\PYG{+w}{    }\PYG{k}{WHEN}\PYG{+w}{ }\PYG{n}{gender}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+s+s1}{\PYGZsq{}1\PYGZsq{}}\PYG{+w}{ }\PYG{k}{THEN}\PYG{+w}{ }\PYG{l+s+s1}{\PYGZsq{}M\PYGZsq{}}
+\PYG{+w}{    }\PYG{k}{WHEN}\PYG{+w}{ }\PYG{n}{gender}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+s+s1}{\PYGZsq{}2\PYGZsq{}}\PYG{+w}{ }\PYG{k}{THEN}\PYG{+w}{ }\PYG{l+s+s1}{\PYGZsq{}K\PYGZsq{}}
+\PYG{+w}{    }\PYG{k}{ELSE}\PYG{+w}{ }\PYG{l+s+s1}{\PYGZsq{}U\PYGZsq{}}
+\PYG{+w}{  }\PYG{k}{END}\PYG{p}{;}
+\end{MintedVerbatim}

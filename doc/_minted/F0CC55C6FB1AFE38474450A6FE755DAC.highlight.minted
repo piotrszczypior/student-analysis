@@ -1,0 +1,11 @@
+\begin{MintedVerbatim}[commandchars=\\\{\}]
+\PYG{+w}{  }\PYG{k}{DROP}\PYG{+w}{ }\PYG{k}{TABLE}\PYG{+w}{ }\PYG{k}{IF}\PYG{+w}{ }\PYG{k}{EXISTS}\PYG{+w}{ }\PYG{n}{dim\PYGZus{}semester}\PYG{p}{;}
+
+\PYG{+w}{  }\PYG{k}{CREATE}\PYG{+w}{ }\PYG{k}{TABLE}\PYG{+w}{ }\PYG{p}{[}\PYG{n}{dim\PYGZus{}semester}\PYG{p}{]}\PYG{+w}{ }\PYG{p}{(}
+\PYG{+w}{       }\PYG{p}{[}\PYG{n}{semester\PYGZus{}id}\PYG{p}{]}\PYG{+w}{ }\PYG{n+nb}{bigint}\PYG{+w}{ }\PYG{k}{identity}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{+w}{ }\PYG{k}{primary}\PYG{+w}{ }\PYG{k}{key}\PYG{p}{,}
+\PYG{+w}{       }\PYG{p}{[}\PYG{n}{semester}\PYG{p}{]}\PYG{+w}{ }\PYG{n+nb}{int}\PYG{p}{,}
+\PYG{+w}{       }\PYG{p}{[}\PYG{k}{year}\PYG{p}{]}\PYG{+w}{ }\PYG{n+nb}{int}\PYG{p}{,}
+\PYG{+w}{       }\PYG{p}{[}\PYG{n}{semester\PYGZus{}type}\PYG{p}{]}\PYG{+w}{ }\PYG{n+nb}{varchar}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{,}
+\PYG{+w}{       }\PYG{p}{[}\PYG{n}{study\PYGZus{}year}\PYG{p}{]}\PYG{+w}{ }\PYG{n+nb}{int}
+\PYG{+w}{  }\PYG{p}{)}\PYG{p}{;}
+\end{MintedVerbatim}

@@ -1,0 +1,24 @@
+\justifying
+\section{Wstęp}
+
+\subsection{Cel i zakres projektu}
+
+Niniejsze sprawozdanie dokumentuje proces projektowania i implementacji systemu Business Intelligence opartego o technologie Microsoft SQL Server Integration Services (SSIS) oraz SQL Server Analysis Services (SSAS). Głównym celem projektu było stworzenie kostki analitycznej umożliwiającej wielowymiarową analizę danych dotyczących ocen studentów z kierunku na Wydziale Elektronicznym Politechniki Wrocławskiej.
+
+System został zaprojektowany w celu umożliwienia analizy wyników akademickich w różnych przekrojach, takich jak studenci, prowadzący zajęcia, rodzaje egzaminów oraz kursy. Implementacja obejmuje kompletny proces ETL (Extract, Transform, Load) realizowany w środowisku SSIS oraz wielowymiarową kostkę OLAP (Online Analytical Processing) zbudowaną w technologii SSAS.
+
+Projekt pozwala na efektywną agregację i eksplorację danych akademickich, wspierając procesy podejmowania decyzji oraz identyfikację trendów w wynikach nauczania. Zastosowanie technologii Microsoft zapewnia skalowalność rozwiązania oraz możliwość integracji z innymi systemami uczelnianymi.
+
+\subsection{Źródła danych}
+
+Dane wejściowe do systemu zostały przygotowane w formacie CSV i obejmują następujące zbiory:
+
+\begin{itemize}
+    \item \texttt{course\_group.csv} -- dane grup kursów 
+    \item \texttt{grades.csv} -- dane z ocenami
+    \item \texttt{students.csv} -- dane o studentach 
+    \item \texttt{teacher\_title.csv} -- dane z tytułami nauczycieli
+    \item \texttt{teachers.csv} -- dane nauczycieli
+\end{itemize}
+
+

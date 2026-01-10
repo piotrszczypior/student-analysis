@@ -1,0 +1,7 @@
+\begin{MintedVerbatim}[commandchars=\\\{\}]
+\PYG{+w}{  }\PYG{k}{IF}\PYG{+w}{ }\PYG{k}{NOT}\PYG{+w}{ }\PYG{k}{EXISTS}\PYG{+w}{ }\PYG{p}{(}\PYG{k}{SELECT}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{+w}{ }\PYG{k}{FROM}\PYG{+w}{ }\PYG{n}{stg\PYGZus{}teacher\PYGZus{}title}\PYG{+w}{ }\PYG{k}{WHERE}\PYG{+w}{ }\PYG{n}{title\PYGZus{}id}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{)}
+\PYG{+w}{  }\PYG{k}{BEGIN}
+\PYG{+w}{      }\PYG{k}{INSERT}\PYG{+w}{ }\PYG{k}{INTO}\PYG{+w}{ }\PYG{n}{stg\PYGZus{}teacher\PYGZus{}title}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{title\PYGZus{}id}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{title\PYGZus{}long}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{title}\PYG{p}{)}
+\PYG{+w}{      }\PYG{k}{VALUES}\PYG{+w}{ }\PYG{p}{(}\PYG{l+m+mi}{0}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s+s1}{\PYGZsq{}Unknown Title\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s+s1}{\PYGZsq{}UNK\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{  }\PYG{k}{END}
+\end{MintedVerbatim}

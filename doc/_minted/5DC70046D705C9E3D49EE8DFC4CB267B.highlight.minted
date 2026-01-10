@@ -1,0 +1,7 @@
+\begin{MintedVerbatim}[commandchars=\\\{\}]
+\PYG{+w}{  }\PYG{k}{UPDATE}\PYG{+w}{ }\PYG{n}{stg\PYGZus{}grades}
+\PYG{+w}{  }\PYG{k}{SET}\PYG{+w}{ }\PYG{n}{semester\PYGZus{}type}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{k}{CASE}
+\PYG{+w}{        }\PYG{k}{WHEN}\PYG{+w}{ }\PYG{n}{semester}\PYG{+w}{ }\PYG{o}{\PYGZpc{}}\PYG{+w}{ }\PYG{l+m+mi}{2}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{+w}{ }\PYG{k}{THEN}\PYG{+w}{ }\PYG{l+s+s1}{\PYGZsq{}W\PYGZsq{}}
+\PYG{+w}{        }\PYG{k}{ELSE}\PYG{+w}{ }\PYG{l+s+s1}{\PYGZsq{}S\PYGZsq{}}
+\PYG{+w}{  }\PYG{k}{END}\PYG{p}{;}
+\end{MintedVerbatim}

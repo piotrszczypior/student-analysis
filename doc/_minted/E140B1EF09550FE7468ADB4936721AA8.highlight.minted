@@ -1,0 +1,10 @@
+\begin{MintedVerbatim}[commandchars=\\\{\}]
+\PYG{+w}{  }\PYG{k}{INSERT}\PYG{+w}{ }\PYG{k}{INTO}\PYG{+w}{ }\PYG{n}{dim\PYGZus{}semester}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{semester}\PYG{p}{,}\PYG{+w}{ }\PYG{k}{year}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{semester\PYGZus{}type}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{study\PYGZus{}year}\PYG{p}{)}
+\PYG{+w}{  }\PYG{k}{SELECT}\PYG{+w}{ }\PYG{k}{DISTINCT}
+\PYG{+w}{      }\PYG{n}{semester}\PYG{p}{,}
+\PYG{+w}{      }\PYG{k}{year}\PYG{p}{,}
+\PYG{+w}{      }\PYG{n}{semester\PYGZus{}type}\PYG{p}{,}
+\PYG{+w}{      }\PYG{n}{study\PYGZus{}year}
+\PYG{+w}{  }\PYG{k}{FROM}\PYG{+w}{ }\PYG{n}{stg\PYGZus{}grades}
+\PYG{+w}{  }\PYG{k}{ORDER}\PYG{+w}{ }\PYG{k}{BY}\PYG{+w}{ }\PYG{k}{year}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{semester}\PYG{p}{;}
+\end{MintedVerbatim}

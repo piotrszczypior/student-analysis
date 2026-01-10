@@ -1,0 +1,239 @@
+\section{ETL}
+
+W ramach realizacji systemu Business Intelligence opracowano proces ETL (Extract, Transform, Load), odpowiedzialny za pozyskanie, przetworzenie oraz załadowanie danych do hurtowni. Dane źródłowe w formacie CSV zostały poddane wieloetapowej obróbce, obejmującej ekstrakcję z plików, walidację oraz transformację do struktury zgodnej z modelem analitycznym.
+
+Implementacja procesu ETL obejmowała następujące etapy:
+
+\begin{enumerate}
+    \item \textbf{Stworzenie schematu bazy danych} -- utworzenie struktury relacyjnej bazy danych w środowisku Microsoft SQL Server.
+
+    \item \textbf{Załadowanie danych źródłowych} -- wykorzystanie narzędzia SQL Server Integration Services (SSIS) do automatycznego importu danych z plików CSV do tabel pośrednich (staging tables) w bazie danych.
+
+    \item \textbf{Czyszczenie i walidacja danych} -- identyfikacja oraz usunięcie niespójności, duplikatów i wartości odstających w danych źródłowych, a także standaryzacja formatów i uzupełnienie brakujących wartości.
+
+    \item \textbf{Transformacja i załadowanie do hurtowni} -- przekształcenie danych z tabel pośrednich do docelowego modelu wymiarowego, obejmującego tabele wymiarów i tabele faktów, stanowiącego podstawę dla kostki analitycznej SSAS.
+\end{enumerate}
+
+Wszystkie operacje ETL zostały zautomatyzowane w postaci pakietów SSIS, w celu zapewnia powtarzalność procesu oraz możliwość regularnej aktualizacji danych w systemie.
+
+\subsection{Stworzenie tabel Staging}
+
+\subsection{Czyszczenie danych}
+
+\subsubsection*{Tabela Teacher}
+
+Kolumna \texttt{gender} w pliku \texttt{teachers.csv} przyjmowała wartości 0 i 1. W celu ujednolicenia reprezentacji danych dokonano konwersji na typ znakowy oraz mapowania wartości na oznaczenia M (Man) i F (Female).
+\begin{minted}{sql}
+  ALTER TABLE stg_teachers
+  ALTER COLUMN gender VARCHAR(1);
+\end{minted}
+
+\noindent
+Następnie przeprowadzono aktualizację wartości w kolumnie \texttt{gender} według ustalonego schematu mapowania:
+
+\begin{minted}{sql}
+  UPDATE stg_teachers
+  SET gender = CASE
+    WHEN gender = '1' THEN 'M'
+    WHEN gender = '2' THEN 'K'
+    ELSE 'U'
+  END;
+\end{minted}
+
+\noindent
+W celu zachowania spójności danych uzupełniono brakujące wartości w kolumnie \texttt{institute}, przypisując oznaczenie \texttt{UNK} (unknown) dla rekordów z wartością NULL lub pustym ciągiem znaków:
+
+\begin{minted}{sql}
+  UPDATE stg_teachers
+  SET institute = 'UNK'
+  WHERE institute IS NULL OR institute = '';
+\end{minted}
+
+\noindent
+Analogicznie, dla kolumny \texttt{faculty} zastąpiono wartości NULL wartością domyślną -1, oznaczającą brak przypisania do wydziału:
+
+\begin{minted}{sql}
+  UPDATE stg_teachers
+  SET faculty = -1
+  WHERE faculty IS NULL;
+\end{minted}
+
+
+\subsubsection*{Tabela Grades}
+
+Usunięto rekordy zawierające nieprawidłowe wartości ocen (0 i 1), które nie mieszczą się w standardowej skali oceniania:
+
+\begin{minted}{sql}
+  DELETE FROM stg_grades
+  WHERE grade IN (0, 1);
+\end{minted}
+
+\noindent
+Dla kolumny \texttt{exam} uzupełniono brakujące wartości domyślnym oznaczeniem 'T' (test):
+
+\begin{minted}{sql}
+  UPDATE stg_grades
+  SET exam = 'T'
+  WHERE exam IS NULL OR exam = '';
+\end{minted}
+
+\noindent
+W celu standaryzacji nazw kursów dokonano konwersji na wielkie litery:
+
+\begin{minted}{sql}
+  UPDATE stg_grades
+  SET course = UPPER(course);
+\end{minted}
+
+\subsubsection*{Tabela Students}
+
+Uzupełniono brakujące wartości w kolumnie \texttt{sub\_spec2} oznaczeniem 'NA' (not applicable):
+
+\begin{minted}{sql}
+  UPDATE stg_students
+  SET sub_spec2 = 'NA'
+  WHERE sub_spec2 IS NULL OR sub_spec2 = '';
+\end{minted}
+
+\subsubsection*{Tabela Course Group}
+
+Standaryzacja nazw kursów poprzez konwersję na wielkie litery:
+
+\begin{minted}{sql}
+  UPDATE stg_course_group
+  SET course = UPPER(course);
+\end{minted}
+
+
+\subsection{Standaryzacja relacji między tabelami}
+
+W celu zapewnienia integralności referencyjnej wprowadzono rekord tytułu domyślnego dla nauczycieli bez przypisanego tytułu naukowego:
+
+\begin{minted}{sql}
+  IF NOT EXISTS (SELECT 1 FROM stg_teacher_title WHERE title_id = 0)
+  BEGIN
+      INSERT INTO stg_teacher_title (title_id, title_long, title)
+      VALUES (0, 'Unknown Title', 'UNK');
+  END
+\end{minted}
+
+\noindent
+Następnie uzupełniono tabelę \texttt{stg\_teachers} o brakujące rekordy nauczycieli występujących w tabeli ocen, ale nieobecnych w tabeli nauczycieli. Rekordom tym przypisano wartości domyślne:
+
+\begin{minted}{sql}
+  INSERT INTO stg_teachers (teacher_id, gender, faculty, institute, title_id)
+  SELECT g.teacher_id, 'U', NULL, 'UNK', 0
+  FROM stg_grades AS g
+  LEFT JOIN stg_teachers AS t ON g.teacher_id = t.teacher_id
+  WHERE t.teacher_id IS NULL
+  GROUP BY g.teacher_id;
+\end{minted}
+
+\noindent
+Analogicznie uzupełniono tabelę \texttt{stg\_course\_group} o kursy występujące w ocenach, ale nieobecne w tabeli grup kursów. Przypisano im domyślną grupę o identyfikatorze 5:
+
+\begin{minted}{sql}
+  INSERT INTO stg_course_group (course, course_group)
+  SELECT g.course, 5
+  FROM stg_grades AS g
+  LEFT JOIN stg_course_group AS cg ON g.course = cg.course
+  WHERE cg.course IS NULL
+  GROUP BY g.course;
+\end{minted}
+
+\subsection{Wzbogacenie danych o kolumny analityczne}
+
+W celu umożliwienia zaawansowanych analiz rozszerzono strukturę tabel o kolumny pochodne zawierające przetworzone wartości analityczne.
+
+\subsubsection*{Tabela Grades}
+
+Dodano trzy nowe kolumny umożliwiające analizę w kontekście roku studiów oraz statusu zaliczenia:
+
+\begin{minted}{sql}
+  ALTER TABLE stg_grades
+  ADD [semester_type] varchar(1),
+      [study_year] int,
+      [pass] bit;
+\end{minted}
+
+\noindent
+Wypełniono kolumnę \texttt{semester\_type} oznaczeniem typu semestru (W -- zimowy, S -- letni) na podstawie parzystości numeru semestru:
+
+\begin{minted}{sql}
+  UPDATE stg_grades
+  SET semester_type = CASE
+        WHEN semester % 2 = 1 THEN 'W'
+        ELSE 'S'
+  END;
+\end{minted}
+
+\noindent
+Obliczono rok studiów na podstawie numeru semestru:
+
+\begin{minted}{sql}
+  UPDATE stg_grades
+  SET study_year = (semester + 1) / 2;
+\end{minted}
+
+\noindent
+Dodano kolumnę binarną \texttt{pass} wskazującą status zaliczenia przedmiotu (1 -- zaliczony, 0 -- niezaliczony):
+
+\begin{minted}{sql}
+  UPDATE stg_grades
+  SET pass = CASE
+      WHEN grade >= 3.0 THEN 1
+      WHEN grade = 2.0 THEN 0
+  END;
+\end{minted}
+
+\subsubsection*{Tabela Course Group}
+
+Rozszerzono tabelę o kolumnę \texttt{course\_type} identyfikującą typ zajęć na podstawie ostatniego znaku nazwy kursu:
+
+\begin{minted}{sql}
+  ALTER TABLE stg_course_group
+  ADD course_type varchar(1);
+\end{minted}
+
+\noindent
+Wypełniono kolumnę \texttt{course\_type} według schematu mapowania typów zajęć (W -- wykład, L -- laboratorium, C -- ćwiczenia, P -- projekt, S -- seminarium, E -- egzamin, U -- nieznany):
+
+\begin{minted}{sql}
+  UPDATE stg_course_group
+  SET course_type = CASE
+        WHEN course IS NULL THEN 'U'
+        WHEN UPPER(RIGHT(course, 1)) NOT IN ('W', 'L', 'C', 'P', 'S', 'E')
+             THEN 'U'
+        ELSE UPPER(RIGHT(course, 1))
+  END;
+\end{minted}
+
+\subsection{Tworzenie tabel wymiarowych}
+
+Utworzono tabelę wymiarową \texttt{dim\_semester} agregującą informacje o semestrach:
+
+\begin{minted}{sql}
+  DROP TABLE IF EXISTS dim_semester;
+
+  CREATE TABLE [dim_semester] (
+       [semester_id] bigint identity(1,1) primary key,
+       [semester] int,
+       [year] int,
+       [semester_type] varchar(1),
+       [study_year] int
+  );
+\end{minted}
+
+\noindent
+Załadowano dane do tabeli wymiarowej na podstawie unikalnych kombinacji wartości z tabeli \texttt{stg\_grades}:
+
+\begin{minted}{sql}
+  INSERT INTO dim_semester (semester, year, semester_type, study_year)
+  SELECT DISTINCT
+      semester,
+      year,
+      semester_type,
+      study_year
+  FROM stg_grades
+  ORDER BY year, semester;
+\end{minted}

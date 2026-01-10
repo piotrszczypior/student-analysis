@@ -1,0 +1,5 @@
+\begin{MintedVerbatim}[commandchars=\\\{\}]
+\PYG{+w}{  }\PYG{k}{UPDATE}\PYG{+w}{ }\PYG{n}{stg\PYGZus{}grades}
+\PYG{+w}{  }\PYG{k}{SET}\PYG{+w}{ }\PYG{n}{exam}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+s+s1}{\PYGZsq{}T\PYGZsq{}}
+\PYG{+w}{  }\PYG{k}{WHERE}\PYG{+w}{ }\PYG{n}{exam}\PYG{+w}{ }\PYG{k}{IS}\PYG{+w}{ }\PYG{k}{NULL}\PYG{+w}{ }\PYG{k}{OR}\PYG{+w}{ }\PYG{n}{exam}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+s+s1}{\PYGZsq{}\PYGZsq{}}\PYG{p}{;}
+\end{MintedVerbatim}
