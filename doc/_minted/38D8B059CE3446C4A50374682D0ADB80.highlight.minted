@@ -1,0 +1,15 @@
+\begin{MintedVerbatim}[commandchars=\\\{\}]
+\PYG{+w}{  }\PYG{k}{INSERT}\PYG{+w}{ }\PYG{k}{INTO}\PYG{+w}{ }\PYG{n}{dim\PYGZus{}teacher\PYGZus{}workload}
+\PYG{+w}{  }\PYG{k}{SELECT}
+\PYG{+w}{    }\PYG{n}{teacher\PYGZus{}id}\PYG{p}{,}
+\PYG{+w}{    }\PYG{n}{semester\PYGZus{}id}\PYG{p}{,}
+\PYG{+w}{    }\PYG{k}{COUNT}\PYG{p}{(}\PYG{o}{*}\PYG{p}{)}\PYG{+w}{ }\PYG{k}{as}\PYG{+w}{ }\PYG{n}{grade\PYGZus{}count}\PYG{p}{,}
+\PYG{+w}{    }\PYG{k}{COUNT}\PYG{p}{(}\PYG{k}{DISTINCT}\PYG{+w}{ }\PYG{n}{course}\PYG{p}{)}\PYG{+w}{ }\PYG{k}{as}\PYG{+w}{ }\PYG{n}{course\PYGZus{}count}\PYG{p}{,}
+\PYG{+w}{    }\PYG{k}{COUNT}\PYG{p}{(}\PYG{k}{DISTINCT}\PYG{+w}{ }\PYG{n}{student\PYGZus{}id}\PYG{p}{)}\PYG{+w}{ }\PYG{k}{as}\PYG{+w}{ }\PYG{n}{student\PYGZus{}count}\PYG{p}{,}
+\PYG{+w}{    }\PYG{k}{SUM}\PYG{p}{(}\PYG{k}{CASE}\PYG{+w}{ }\PYG{k}{WHEN}\PYG{+w}{ }\PYG{n}{exam}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+s+s1}{\PYGZsq{}E\PYGZsq{}}\PYG{+w}{ }\PYG{k}{THEN}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{+w}{ }\PYG{k}{ELSE}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{+w}{ }\PYG{k}{END}\PYG{p}{)}\PYG{+w}{ }\PYG{k}{as}\PYG{+w}{ }\PYG{n}{exam\PYGZus{}count}\PYG{p}{,}
+\PYG{+w}{    }\PYG{k}{SUM}\PYG{p}{(}\PYG{k}{CASE}\PYG{+w}{ }\PYG{k}{WHEN}\PYG{+w}{ }\PYG{n}{exam}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+s+s1}{\PYGZsq{}T\PYGZsq{}}\PYG{+w}{ }\PYG{k}{THEN}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{+w}{ }\PYG{k}{ELSE}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{+w}{ }\PYG{k}{END}\PYG{p}{)}\PYG{+w}{ }\PYG{k}{as}\PYG{+w}{ }\PYG{n}{test\PYGZus{}count}\PYG{p}{,}
+\PYG{+w}{    }\PYG{k}{CAST}\PYG{p}{(}\PYG{k}{SUM}\PYG{p}{(}\PYG{k}{CAST}\PYG{p}{(}\PYG{n}{pass}\PYG{+w}{ }\PYG{k}{as}\PYG{+w}{ }\PYG{n+nb}{int}\PYG{p}{)}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{l+m+mi}{100}\PYG{p}{.}\PYG{l+m+mi}{0}\PYG{+w}{ }\PYG{o}{/}\PYG{+w}{ }\PYG{k}{COUNT}\PYG{p}{(}\PYG{o}{*}\PYG{p}{)}\PYG{+w}{ }\PYG{k}{AS}\PYG{+w}{ }\PYG{n+nb}{DECIMAL}\PYG{p}{(}\PYG{l+m+mi}{5}\PYG{p}{,}\PYG{l+m+mi}{2}\PYG{p}{)}\PYG{p}{)}\PYG{+w}{ }\PYG{k}{as}\PYG{+w}{ }\PYG{n}{pass\PYGZus{}rate}
+\PYG{+w}{  }\PYG{k}{FROM}\PYG{+w}{ }\PYG{n}{fact\PYGZus{}grades}
+\PYG{+w}{  }\PYG{k}{GROUP}\PYG{+w}{ }\PYG{k}{BY}\PYG{+w}{ }\PYG{n}{teacher\PYGZus{}id}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{semester\PYGZus{}id}
+\PYG{+w}{  }\PYG{k}{ORDER}\PYG{+w}{ }\PYG{k}{BY}\PYG{+w}{ }\PYG{n}{teacher\PYGZus{}id}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{semester\PYGZus{}id}\PYG{p}{;}
+\end{MintedVerbatim}

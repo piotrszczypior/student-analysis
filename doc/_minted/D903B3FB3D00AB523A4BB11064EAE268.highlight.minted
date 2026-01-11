@@ -1,0 +1,5 @@
+\begin{MintedVerbatim}[commandchars=\\\{\}]
+\PYG{+w}{  }\PYG{k}{INSERT}\PYG{+w}{ }\PYG{k}{INTO}\PYG{+w}{ }\PYG{n}{dim\PYGZus{}teachers}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{teacher\PYGZus{}id}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{gender}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{faculty}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{institute}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{title\PYGZus{}id}\PYG{p}{)}
+\PYG{+w}{  }\PYG{k}{SELECT}\PYG{+w}{ }\PYG{n}{teacher\PYGZus{}id}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{gender}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{faculty}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{institute}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{title\PYGZus{}id}
+\PYG{+w}{  }\PYG{k}{FROM}\PYG{+w}{ }\PYG{n}{stg\PYGZus{}teachers}\PYG{p}{;}
+\end{MintedVerbatim}

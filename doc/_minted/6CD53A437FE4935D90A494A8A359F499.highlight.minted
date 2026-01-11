@@ -1,0 +1,15 @@
+\begin{MintedVerbatim}[commandchars=\\\{\}]
+\PYG{+w}{  }\PYG{k}{INSERT}\PYG{+w}{ }\PYG{k}{INTO}\PYG{+w}{ }\PYG{n}{fact\PYGZus{}grades}
+\PYG{+w}{      }\PYG{p}{(}\PYG{n}{student\PYGZus{}id}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{teacher\PYGZus{}id}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{semester\PYGZus{}id}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{course}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{grade}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{exam}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{pass}\PYG{p}{)}
+\PYG{+w}{  }\PYG{k}{SELECT}
+\PYG{+w}{      }\PYG{k}{g}\PYG{p}{.}\PYG{n}{student\PYGZus{}id}\PYG{p}{,}
+\PYG{+w}{      }\PYG{k}{g}\PYG{p}{.}\PYG{n}{teacher\PYGZus{}id}\PYG{p}{,}
+\PYG{+w}{      }\PYG{n}{s}\PYG{p}{.}\PYG{n}{semester\PYGZus{}id}\PYG{p}{,}
+\PYG{+w}{      }\PYG{k}{g}\PYG{p}{.}\PYG{n}{course}\PYG{p}{,}
+\PYG{+w}{      }\PYG{k}{g}\PYG{p}{.}\PYG{n}{grade}\PYG{p}{,}
+\PYG{+w}{      }\PYG{k}{g}\PYG{p}{.}\PYG{n}{exam}\PYG{p}{,}
+\PYG{+w}{      }\PYG{k}{g}\PYG{p}{.}\PYG{n}{pass}
+\PYG{+w}{  }\PYG{k}{FROM}\PYG{+w}{ }\PYG{n}{stg\PYGZus{}grades}\PYG{+w}{ }\PYG{k}{AS}\PYG{+w}{ }\PYG{k}{g}
+\PYG{+w}{  }\PYG{k}{JOIN}\PYG{+w}{ }\PYG{n}{dim\PYGZus{}semester}\PYG{+w}{ }\PYG{k}{AS}\PYG{+w}{ }\PYG{n}{s}
+\PYG{+w}{  }\PYG{k}{ON}\PYG{+w}{ }\PYG{k}{g}\PYG{p}{.}\PYG{n}{semester}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{s}\PYG{p}{.}\PYG{n}{semester}\PYG{+w}{ }\PYG{k}{AND}\PYG{+w}{ }\PYG{k}{g}\PYG{p}{.}\PYG{k}{year}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{s}\PYG{p}{.}\PYG{k}{year}\PYG{p}{;}
+\end{MintedVerbatim}

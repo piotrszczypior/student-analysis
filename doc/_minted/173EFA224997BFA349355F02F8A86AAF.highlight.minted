@@ -1,0 +1,14 @@
+\begin{MintedVerbatim}[commandchars=\\\{\}]
+\PYG{+w}{  }\PYG{k}{DROP}\PYG{+w}{ }\PYG{k}{TABLE}\PYG{+w}{ }\PYG{k}{IF}\PYG{+w}{ }\PYG{k}{EXISTS}\PYG{+w}{ }\PYG{n}{fact\PYGZus{}grades}\PYG{p}{;}
+
+\PYG{+w}{  }\PYG{k}{CREATE}\PYG{+w}{ }\PYG{k}{TABLE}\PYG{+w}{ }\PYG{p}{[}\PYG{n}{fact\PYGZus{}grades}\PYG{p}{]}\PYG{+w}{ }\PYG{p}{(}
+\PYG{+w}{       }\PYG{p}{[}\PYG{n}{grade\PYGZus{}id}\PYG{p}{]}\PYG{+w}{ }\PYG{n+nb}{bigint}\PYG{+w}{ }\PYG{k}{identity}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{+w}{ }\PYG{k}{primary}\PYG{+w}{ }\PYG{k}{key}\PYG{p}{,}
+\PYG{+w}{       }\PYG{p}{[}\PYG{n}{student\PYGZus{}id}\PYG{p}{]}\PYG{+w}{ }\PYG{n+nb}{bigint}\PYG{p}{,}
+\PYG{+w}{       }\PYG{p}{[}\PYG{n}{teacher\PYGZus{}id}\PYG{p}{]}\PYG{+w}{ }\PYG{n+nb}{bigint}\PYG{p}{,}
+\PYG{+w}{       }\PYG{p}{[}\PYG{n}{semester\PYGZus{}id}\PYG{p}{]}\PYG{+w}{ }\PYG{n+nb}{bigint}\PYG{p}{,}
+\PYG{+w}{       }\PYG{p}{[}\PYG{n}{course}\PYG{p}{]}\PYG{+w}{ }\PYG{n+nb}{varchar}\PYG{p}{(}\PYG{l+m+mi}{50}\PYG{p}{)}\PYG{p}{,}
+\PYG{+w}{       }\PYG{p}{[}\PYG{n}{grade}\PYG{p}{]}\PYG{+w}{ }\PYG{n+nb}{decimal}\PYG{p}{(}\PYG{l+m+mi}{3}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{,}
+\PYG{+w}{       }\PYG{p}{[}\PYG{n}{exam}\PYG{p}{]}\PYG{+w}{ }\PYG{n+nb}{varchar}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{,}
+\PYG{+w}{       }\PYG{p}{[}\PYG{n}{pass}\PYG{p}{]}\PYG{+w}{ }\PYG{n+nb}{bit}\PYG{p}{,}
+\PYG{+w}{  }\PYG{p}{)}\PYG{p}{;}
+\end{MintedVerbatim}

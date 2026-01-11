@@ -1,0 +1,11 @@
+\begin{MintedVerbatim}[commandchars=\\\{\}]
+\PYG{+w}{  }\PYG{k}{DROP}\PYG{+w}{ }\PYG{k}{TABLE}\PYG{+w}{ }\PYG{k}{IF}\PYG{+w}{ }\PYG{k}{EXISTS}\PYG{+w}{ }\PYG{n}{dim\PYGZus{}teachers}\PYG{p}{;}
+
+\PYG{+w}{  }\PYG{k}{CREATE}\PYG{+w}{ }\PYG{k}{TABLE}\PYG{+w}{ }\PYG{n}{dim\PYGZus{}teachers}\PYG{+w}{ }\PYG{p}{(}
+\PYG{+w}{      }\PYG{n}{teacher\PYGZus{}id}\PYG{+w}{ }\PYG{n+nb}{BIGINT}\PYG{+w}{ }\PYG{k}{NOT}\PYG{+w}{ }\PYG{k}{NULL}\PYG{+w}{ }\PYG{k}{PRIMARY}\PYG{+w}{ }\PYG{k}{KEY}\PYG{p}{,}
+\PYG{+w}{      }\PYG{n}{gender}\PYG{+w}{ }\PYG{n+nb}{VARCHAR}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{,}
+\PYG{+w}{      }\PYG{n}{faculty}\PYG{+w}{ }\PYG{n+nb}{INT}\PYG{p}{,}
+\PYG{+w}{      }\PYG{n}{institute}\PYG{+w}{ }\PYG{n+nb}{VARCHAR}\PYG{p}{(}\PYG{l+m+mi}{5}\PYG{p}{)}\PYG{p}{,}
+\PYG{+w}{      }\PYG{n}{title\PYGZus{}id}\PYG{+w}{ }\PYG{n+nb}{INT}
+\PYG{+w}{  }\PYG{p}{)}\PYG{p}{;}
+\end{MintedVerbatim}

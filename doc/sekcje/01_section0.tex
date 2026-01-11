@@ -210,7 +210,8 @@ Wypełniono kolumnę \texttt{course\_type} według schematu mapowania typów zaj
 
 \subsection{Tworzenie tabel wymiarowych}
 
-Utworzono tabelę wymiarową \texttt{dim\_semester} agregującą informacje o semestrach:
+\subsubsection*{Tabela Semester}
+Została utworzona nowa tabela wymiarowa \texttt{dim\_semester} agregująca informacje o semestrach:
 
 \begin{minted}{sql}
   DROP TABLE IF EXISTS dim_semester;
@@ -237,3 +238,181 @@ Załadowano dane do tabeli wymiarowej na podstawie unikalnych kombinacji wartoś
   FROM stg_grades
   ORDER BY year, semester;
 \end{minted}
+
+\subsubsection*{Tabela Teacher}
+
+Pozostałe tabele wymiarów zostały utworzone na podstawie tabel pośrednich. Etap ten został przeprowadzony w celu standaryzacji nazw, zapewnienia odpowiedniej struktury tabel oraz utworzenia kluczy.
+
+\noindent
+Poniżej znajduje się przykładowy kod SQL dla tabeli wymiarowej \texttt{dim\_teachers}.
+
+\begin{minted}{sql}
+  DROP TABLE IF EXISTS dim_teachers;
+
+  CREATE TABLE dim_teachers (
+      teacher_id BIGINT NOT NULL PRIMARY KEY,
+      gender VARCHAR(1),
+      faculty INT,
+      institute VARCHAR(5),
+      title_id INT
+  );
+\end{minted}
+
+\noindent
+Załadowano dane do tabeli wymiarowej na podstawie tabeli \texttt{stg\_teachers}:
+
+\begin{minted}{sql}
+  INSERT INTO dim_teachers (teacher_id, gender, faculty, institute, title_id)
+  SELECT teacher_id, gender, faculty, institute, title_id
+  FROM stg_teachers;
+\end{minted}
+
+\noindent
+Podobny mechanizm został zastosowany dla tabel \texttt{stg\_students}, \texttt{stg\_course\_group} oraz \texttt{stg\_teacher\_title}.
+
+\subsection{Tworzenie tabeli faktów}
+
+\noindent
+Utworzono tabelę faktów \texttt{fact\_grades} będącą centralnym elementem modelu wymiarowego, przechowującą szczegółowe informacje o wystawionych ocenach wraz z kluczami obcymi do odpowiednich wymiarów:
+
+\begin{minted}{sql}
+  DROP TABLE IF EXISTS fact_grades;
+
+  CREATE TABLE [fact_grades] (
+       [grade_id] bigint identity(1,1) primary key,
+       [student_id] bigint,
+       [teacher_id] bigint,
+       [semester_id] bigint,
+       [course] varchar(50),
+       [grade] decimal(3,1),
+       [exam] varchar(1),
+       [pass] bit,
+  );
+\end{minted}
+
+\noindent
+Załadowano dane do tabeli faktów na podstawie połączenia tabeli \texttt{stg\_grades} z wymiarem \texttt{dim\_semester}:
+
+\begin{minted}{sql}
+  INSERT INTO fact_grades
+      (student_id, teacher_id, semester_id, course, grade, exam, pass)
+  SELECT
+      g.student_id,
+      g.teacher_id,
+      s.semester_id,
+      g.course,
+      g.grade,
+      g.exam,
+      g.pass
+  FROM stg_grades AS g
+  JOIN dim_semester AS s
+  ON g.semester = s.semester AND g.year = s.year;
+\end{minted}
+
+\subsection{Dodatkowe tabele wymiarów}
+
+\subsubsection*{Tabela Teacher Workload}
+
+\noindent
+Utworzono dodatkowo nową tabelę wymiarową \texttt{dim\_teacher\_workload} agregującą metryki obciążenia nauczycieli w poszczególnych semestrach, obejmujące liczbę wystawionych ocen, prowadzonych kursów, ocenianych studentów, liczbę egzaminów i testów oraz współczynnik zdawalności:
+
+\begin{minted}{sql}
+  DROP TABLE IF EXISTS dim_teacher_workload;
+
+  CREATE TABLE [dim_teacher_workload] (
+        [teacher_id] bigint,
+        [semester_id] bigint,
+        [grade_count] int,
+        [course_count] int,
+        [student_count] int,
+        [exam_count] int,
+        [test_count] int,
+        [pass_rate] DECIMAL(5,2)
+
+        CONSTRAINT PK_teacher_workload PRIMARY KEY (teacher_id, semester_id)
+  );
+\end{minted}
+
+\noindent
+Załadowano dane do tabeli wymiarowej na podstawie agregacji danych z tabeli faktów \texttt{fact\_grades}:
+
+\begin{minted}{sql}
+  INSERT INTO dim_teacher_workload
+  SELECT
+    teacher_id,
+    semester_id,
+    COUNT(*) as grade_count,
+    COUNT(DISTINCT course) as course_count,
+    COUNT(DISTINCT student_id) as student_count,
+    SUM(CASE WHEN exam = 'E' THEN 1 ELSE 0 END) as exam_count,
+    SUM(CASE WHEN exam = 'T' THEN 1 ELSE 0 END) as test_count,
+    CAST(SUM(CAST(pass as int)) * 100.0 / COUNT(*) AS DECIMAL(5,2)) as pass_rate
+  FROM fact_grades
+  GROUP BY teacher_id, semester_id
+  ORDER BY teacher_id, semester_id;
+\end{minted}
+
+\subsubsection*{Tabela Student Workload}
+
+Podobnie została utworzona tabela \texttt{Student Workload} agregująca metryki obciążenia studentów w poszczególnych semestrach.
+
+\begin{minted}{sql}
+  DROP TABLE IF EXISTS [dim_student_workload];
+
+  CREATE TABLE [dim_student_workload] (
+        [student_id] bigint,
+        [semester_id] bigint,
+        [grade_count] int,
+        [course_count] int,
+        [teacher_count] int,
+        [exam_count] int,
+        [test_count] int,
+        [pass_rate] DECIMAL(5,2)
+
+        CONSTRAINT PK_student_workload PRIMARY KEY (student_id, semester_id)
+  );
+\end{minted}
+
+\noindent
+Załadowano dane do tabeli wymiarowej na podstawie agregacji danych z tabeli faktów fact grades:
+
+\begin{minted}{sql}
+  INSERT INTO dim_student_workload 
+  SELECT 
+      student_id,
+      semester_id,
+      COUNT(*) as grade_count,
+      COUNT(DISTINCT course) as course_count,
+      COUNT(DISTINCT teacher_id) as teacher_count,
+      SUM(CASE WHEN exam = 'E' THEN 1 ELSE 0 END) as exam_count,
+      SUM(CASE WHEN exam = 'T' THEN 1 ELSE 0 END) as test_count,
+      CAST(SUM(CAST(pass as int)) * 100.0 / COUNT(*) AS DECIMAL(5,2)) as pass_rate
+  FROM fact_grades
+  GROUP BY student_id, semester_id
+  ORDER BY student_id, semester_id;
+\end{minted}
+
+
+\subsection{Usunięcie tabel pośrednich}
+
+\noindent
+Na zakończenie procesu ETL w narzędziu SSIS przeprowadzono czyszczenie bazy danych. Tabele pośrednie (staging) zostały usunięte, pozostawiając jedynie tabele wymiarowe oraz tabelę faktów stanowiące finalną strukturę hurtowni danych.
+
+\noindent
+Przykładowe usunięcie tabeli staging:
+
+\begin{minted}{sql}
+  DROP TABLE IF EXISTS stg_students;
+\end{minted}
+
+
+\subsection{Diagram procesu ETL}
+
+\vspace{-0.5cm}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{img/pipeline.pdf}
+\caption{Diagram przepływu danych w procesie ETL zrealizowanym w narzędziu SSIS}
+\label{fig:etl-pipeline}
+\end{figure}
