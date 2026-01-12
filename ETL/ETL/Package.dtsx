@@ -12,8 +12,8 @@
   DTS:LocaleID="1033"
   DTS:MaxErrorCount="0"
   DTS:ObjectName="Package"
-  DTS:VersionBuild="166"
-  DTS:VersionGUID="{2C3340AD-DDB6-4CDD-979E-9C19239F6203}">
+  DTS:VersionBuild="167"
+  DTS:VersionGUID="{FCCE275F-52E2-40B3-A172-F652FC17DB29}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -702,7 +702,7 @@
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
               SQLTask:Connection="{7E33B311-8F34-4A48-90C3-881CE798482E}"
-              SQLTask:SqlStatementSource="DROP TABLE IF EXISTS [dim_teacher_semester_workload];&#xA;GO&#xA;&#xA;CREATE TABLE dim_teacher_semester_workload (&#xA;    workload_id BIGINT IDENTITY(1,1) PRIMARY KEY,&#xA;    teacher_id BIGINT NOT NULL,&#xA;    semester_id BIGINT NOT NULL,&#xA;    &#xA;    workload_tier VARCHAR(20) NOT NULL,&#xA;    &#xA;    CONSTRAINT UK_teacher_semester UNIQUE (teacher_id, semester_id),&#xA;);&#xA;&#xA;&#xA;&#xA;INSERT INTO dim_teacher_semester_workload (teacher_id, semester_id, workload_tier)&#xA;SELECT &#xA;    teacher_id,&#xA;    semester_id,&#xA;    CASE &#xA;        WHEN COUNT(DISTINCT student_id) &lt; 50 THEN 'light'&#xA;        WHEN COUNT(DISTINCT student_id) &lt; 150 THEN 'normal'&#xA;        ELSE 'heavy'&#xA;    END&#xA;FROM [dbo].[fact_grades]&#xA;GROUP BY teacher_id, semester_id;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              SQLTask:SqlStatementSource="DROP TABLE IF EXISTS [dim_teacher_semester_workload];&#xA;GO&#xA;&#xA;CREATE TABLE dim_teacher_semester_workload (&#xA;    workload_id BIGINT IDENTITY(1,1) PRIMARY KEY,&#xA;    teacher_id BIGINT NOT NULL,&#xA;    semester_id BIGINT NOT NULL,&#xA;    &#xA;    workload_tier VARCHAR(20) NOT NULL,&#xA;    &#xA;    CONSTRAINT UK_teacher_semester UNIQUE (teacher_id, semester_id),&#xA;);&#xA;&#xA;&#xA;&#xA;INSERT INTO dim_teacher_semester_workload (teacher_id, semester_id, workload_tier)&#xA;SELECT &#xA;    teacher_id,&#xA;    semester_id,&#xA;    CASE &#xA;        WHEN COUNT(DISTINCT student_id) &lt; 50 THEN 'light'&#xA;        WHEN COUNT(DISTINCT student_id) &lt; 150 THEN 'normal'&#xA;        ELSE 'heavy'&#xA;    END&#xA;FROM [dbo].[fact_grades]&#xA;GROUP BY teacher_id, semester_id;&#xA;&#xA;&#xA;UPDATE fg&#xA;SET fg.teacher_workload_id = tw.workload_id&#xA;FROM fact_grades fg&#xA;JOIN dim_teacher_semester_workload tw &#xA;    ON fg.teacher_id = tw.teacher_id &#xA;    AND fg.semester_id = tw.semester_id;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
           </DTS:ObjectData>
         </DTS:Executable>
       </DTS:Executables>
