@@ -30,10 +30,10 @@
         <ID>Dim Teacher Titles</ID>
       </Dimension>
       <Dimension>
-        <ID>Dim Pass Status</ID>
+        <ID>Dim Exam Type</ID>
       </Dimension>
       <Dimension>
-        <ID>Dim Exam Type</ID>
+        <ID>Dim Teacher Semester Workload</ID>
       </Dimension>
     </Dimensions>
     <Cubes>
@@ -45,14 +45,6 @@
             <Partitions>
               <Partition>
                 <ID>Fact Grades</ID>
-              </Partition>
-            </Partitions>
-          </MeasureGroup>
-          <MeasureGroup>
-            <ID>Dim Teacher Workload</ID>
-            <Partitions>
-              <Partition>
-                <ID>Dim Teacher Workload</ID>
               </Partition>
             </Partitions>
           </MeasureGroup>

@@ -26,7 +26,7 @@
       </ObjectSnapshot>
       <ObjectSnapshot>
         <Type>Microsoft.AnalysisServices.DataSourceView</Type>
-        <TimeStamp>wAoGisa/3WdWMIIbdejx7zP4bkA=12/29/2025 7:40:47 PM12/29/2025 6:49:02 PM</TimeStamp>
+        <TimeStamp>Y+qo8wj8ovo70/4Hfp43kSu9ytg=1/12/2026 11:57:31 PM12/29/2025 6:49:02 PM</TimeStamp>
         <ID>
           <String>Student Analysis DB</String>
         </ID>
@@ -75,21 +75,21 @@
       </ObjectSnapshot>
       <ObjectSnapshot>
         <Type>Microsoft.AnalysisServices.Dimension</Type>
-        <TimeStamp>2OeajNX0rpAUKmEk5qkCHOdBcm4=1/3/2026 11:59:15 AM1/3/2026 11:59:15 AM</TimeStamp>
-        <ID>
-          <String>Dim Pass Status</String>
-        </ID>
-      </ObjectSnapshot>
-      <ObjectSnapshot>
-        <Type>Microsoft.AnalysisServices.Dimension</Type>
         <TimeStamp>SBup9P9iOVhALR3T35mjy+lI/wc=1/3/2026 11:59:59 AM1/3/2026 11:59:59 AM</TimeStamp>
         <ID>
           <String>Dim Exam Type</String>
         </ID>
       </ObjectSnapshot>
       <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.Dimension</Type>
+        <TimeStamp>aLQbU7112PWF09S7IdtMYJUk5EU=1/12/2026 10:42:53 PM1/12/2026 9:41:47 PM</TimeStamp>
+        <ID>
+          <String>Dim Teacher Semester Workload</String>
+        </ID>
+      </ObjectSnapshot>
+      <ObjectSnapshot>
         <Type>Microsoft.AnalysisServices.Cube</Type>
-        <TimeStamp>COOKHU8L9Bo0YAJbsQFaz5+Qys8=1/4/2026 7:18:10 PM12/29/2025 8:30:11 PM9r0ttapPel3JRrrGqejHxvVwwgc=1/4/2026 4:03:48 PM12/29/2025 8:30:11 PM</TimeStamp>
+        <TimeStamp>rNixyy+lST2OPa2FdKFyqem7FHA=1/13/2026 12:05:40 AM12/29/2025 8:30:11 PMSrE8Gd8cLeQFSdbZ2lvXf2YocB8=1/11/2026 10:50:17 PM12/29/2025 8:30:11 PM</TimeStamp>
         <ID>
           <String>Student Analysis DB</String>
         </ID>
@@ -106,5 +106,5 @@
   </Snapshot>
   <AssemblyLocations />
   <ProcessingComplete>true</ProcessingComplete>
-  <LastDeployed>2026-01-06T11:55:36.303333Z</LastDeployed>
+  <LastDeployed>2026-01-12T23:05:42.103333Z</LastDeployed>
 </DeploymentSnapshot>

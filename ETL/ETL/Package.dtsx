@@ -12,8 +12,8 @@
   DTS:LocaleID="1033"
   DTS:MaxErrorCount="0"
   DTS:ObjectName="Package"
-  DTS:VersionBuild="140"
-  DTS:VersionGUID="{EE311F05-C5EF-4142-A924-B9C448871A09}">
+  DTS:VersionBuild="166"
+  DTS:VersionGUID="{2C3340AD-DDB6-4CDD-979E-9C19239F6203}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -393,7 +393,7 @@
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
               SQLTask:Connection="{7E33B311-8F34-4A48-90C3-881CE798482E}"
-              SQLTask:SqlStatementSource="DELETE FROM stg_grades &#xA;WHERE grade IN (0, 1);&#xA;&#xA;UPDATE stg_grades&#xA;SET exam = 'T'&#xA;WHERE exam IS NULL OR exam = '';&#xA;&#xA;&#xA;UPDATE stg_grades&#xA;SET course = UPPER(course);" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              SQLTask:SqlStatementSource="DELETE FROM stg_grades &#xA;WHERE grade IN (0, 1);&#xA;&#xA;UPDATE stg_grades&#xA;SET exam = 'T'&#xA;WHERE exam IS NULL OR exam = '';&#xA;&#xA;&#xA;UPDATE stg_grades&#xA;SET course = UPPER(course);&#xA;&#xA;GO" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
           </DTS:ObjectData>
         </DTS:Executable>
         <DTS:Executable
@@ -410,7 +410,7 @@
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
               SQLTask:Connection="{7E33B311-8F34-4A48-90C3-881CE798482E}"
-              SQLTask:SqlStatementSource="UPDATE stg_students&#xA;SET sub_spec2 = 'NA'&#xA;WHERE sub_spec2 IS NULL or sub_spec2 = '';" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              SQLTask:SqlStatementSource="UPDATE stg_students&#xA;SET sub_spec2 = 'NA'&#xA;WHERE sub_spec2 IS NULL or sub_spec2 = '';&#xA;&#xA;GO" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
           </DTS:ObjectData>
         </DTS:Executable>
         <DTS:Executable
@@ -427,7 +427,7 @@
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
               SQLTask:Connection="{7E33B311-8F34-4A48-90C3-881CE798482E}"
-              SQLTask:SqlStatementSource="ALTER TABLE stg_teachers&#xA;ALTER COLUMN gender VARCHAR(1);&#xA;&#xA;UPDATE stg_teachers&#xA;SET gender = CASE &#xA;    WHEN gender = '1' THEN 'M'&#xA;    WHEN gender = '2' THEN 'K'&#xA;    ELSE 'U'&#xA;END;&#xA;&#xA;UPDATE stg_teachers &#xA;SET institute = 'UNK'&#xA;WHERE institute IS NULL OR institute = '';&#xA;&#xA;UPDATE stg_teachers &#xA;SET faculty = -1&#xA;WHERE faculty IS NULL;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              SQLTask:SqlStatementSource="ALTER TABLE stg_teachers&#xA;ALTER COLUMN gender VARCHAR(1);&#xA;&#xA;UPDATE stg_teachers&#xA;SET gender = CASE &#xA;    WHEN gender = '1' THEN 'M'&#xA;    WHEN gender = '2' THEN 'K'&#xA;    ELSE 'U'&#xA;END;&#xA;&#xA;UPDATE stg_teachers &#xA;SET institute = 'UNK'&#xA;WHERE institute IS NULL OR institute = '';&#xA;&#xA;UPDATE stg_teachers &#xA;SET faculty = 255&#xA;WHERE faculty IS NULL;&#xA;&#xA;GO" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
           </DTS:ObjectData>
         </DTS:Executable>
       </DTS:Executables>
@@ -583,7 +583,7 @@
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
               SQLTask:Connection="{7E33B311-8F34-4A48-90C3-881CE798482E}"
-              SQLTask:SqlStatementSource="DROP TABLE IF EXISTS fact_grades;&#xA;&#xA;CREATE TABLE [fact_grades] (&#xA;    grade_id bigint IDENTITY(1,1) PRIMARY KEY,&#xA;   &#xA;    grade decimal(2, 1),&#xA;    pass bit, &#xA;    exam varchar(1),   &#xA;&#xA;     teacher_id bigint,&#xA;    student_id bigint,&#xA;    course varchar(10),&#xA;    semester_id bigint&#xA;);&#xA;&#xA;INSERT INTO fact_grades (grade, pass, exam,  teacher_id, student_id, course, semester_id)&#xA;SELECT g.grade, g.pass, g.exam, g.teacher_id, g.student_id, g.course, sd.semester_id&#xA;FROM stg_grades g &#xA;JOIN dim_semester sd ON sd.year = g.year AND sd.semester = g.semester;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              SQLTask:SqlStatementSource="DROP TABLE IF EXISTS fact_grades;&#xA;&#xA;CREATE TABLE [fact_grades] (&#xA;    grade_id bigint IDENTITY(1,1) PRIMARY KEY,&#xA;   &#xA;    grade decimal(2, 1),&#xA;    pass int, &#xA;    exam varchar(1),   &#xA;&#xA;     teacher_id bigint,&#xA;    student_id bigint,&#xA;    course varchar(10),&#xA;    semester_id bigint&#xA;);&#xA;&#xA;INSERT INTO fact_grades (grade, pass, exam,  teacher_id, student_id, course, semester_id)&#xA;SELECT g.grade, g.pass, g.exam, g.teacher_id, g.student_id, g.course, sd.semester_id&#xA;FROM stg_grades g &#xA;JOIN dim_semester sd ON sd.year = g.year AND sd.semester = g.semester;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
           </DTS:ObjectData>
         </DTS:Executable>
         <DTS:Executable
@@ -617,7 +617,7 @@
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
               SQLTask:Connection="{7E33B311-8F34-4A48-90C3-881CE798482E}"
-              SQLTask:SqlStatementSource="ALTER TABLE stg_grades&#xA;ADD [semester_type] varchar(1),&#xA;         [study_year] int,&#xA;         [pass] bit;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              SQLTask:SqlStatementSource="ALTER TABLE stg_grades&#xA;ADD [semester_type] varchar(1),&#xA;         [study_year] int,&#xA;         [pass] tinyint;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
           </DTS:ObjectData>
         </DTS:Executable>
         <DTS:Executable
@@ -685,7 +685,7 @@
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
               SQLTask:Connection="{7E33B311-8F34-4A48-90C3-881CE798482E}"
-              SQLTask:SqlStatementSource="DROP TABLE IF EXISTS [dim_student_workload];&#xA;&#xA;&#xA;CREATE TABLE [dim_student_workload] (&#xA;      [student_id] bigint,&#xA;      [semester_id] bigint,&#xA;      [grade_count] int,&#xA;      [course_count] int,&#xA;      [teacher_count] int,&#xA;      [avg_grade] decimal(3,2),&#xA;&#x9;  [grade_stddev] DECIMAL(4,2),&#xA;&#x9;  [grade_variance] DECIMAL(4,2),&#xA;      [exam_count] int,&#xA;      [test_count] int,&#xA;&#x9;  [pass_rate] DECIMAL(5,2)&#xA;&#xA;&#x9;  CONSTRAINT PK_student_workload PRIMARY KEY (student_id, semester_id)&#xA;);&#xA;&#xA;&#xA;INSERT INTO dim_student_workload &#xA;SELECT &#xA;    student_id,&#xA;    semester_id,&#xA;    COUNT(*) as grade_count,&#xA;    COUNT(DISTINCT course) as course_count,&#xA;    COUNT(DISTINCT teacher_id) as teacher_count,&#xA;    AVG(grade) as avg_grade,&#xA;&#x9;STDEV(grade) as grade_stddev,&#xA;&#x9;VAR(grade) as grade_variance,&#xA;    SUM(CASE WHEN exam = 'E' THEN 1 ELSE 0 END) as exam_count,&#xA;    SUM(CASE WHEN exam = 'T' THEN 1 ELSE 0 END) as test_count,&#xA;&#x9;CAST(SUM(CAST(pass as int)) * 100.0 / COUNT(*) AS DECIMAL(5,2)) as pass_rate&#xA;FROM fact_grades&#xA;GROUP BY student_id, semester_id&#xA;ORDER BY student_id, semester_id;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              SQLTask:SqlStatementSource="DROP TABLE IF EXISTS [dim_student_workload];&#xA;GO&#xA;&#xA;CREATE TABLE [dim_student_workload] (&#xA;      [student_id] bigint,&#xA;      [semester_id] bigint,&#xA;      [grade_count] int,&#xA;      [course_count] int,&#xA;      [teacher_count] int,&#xA;      [exam_count] int,&#xA;      [test_count] int&#xA;&#xA;      CONSTRAINT PK_student_workload PRIMARY KEY (student_id, semester_id)&#xA;);&#xA;&#xA;&#xA;INSERT INTO dim_student_workload &#xA;SELECT &#xA;    student_id,&#xA;    semester_id,&#xA;    COUNT(*) as grade_count,&#xA;    COUNT(DISTINCT course) as course_count,&#xA;    COUNT(DISTINCT teacher_id) as teacher_count,&#xA;    SUM(CASE WHEN exam = 'E' THEN 1 ELSE 0 END) as exam_count,&#xA;    SUM(CASE WHEN exam = 'T' THEN 1 ELSE 0 END) as test_count&#xA;FROM fact_grades&#xA;GROUP BY student_id, semester_id&#xA;ORDER BY student_id, semester_id;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
           </DTS:ObjectData>
         </DTS:Executable>
         <DTS:Executable
@@ -702,7 +702,7 @@
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
               SQLTask:Connection="{7E33B311-8F34-4A48-90C3-881CE798482E}"
-              SQLTask:SqlStatementSource="DROP TABLE IF EXISTS dim_teacher_workload;&#xA;&#xA;&#xA;CREATE TABLE [dim_teacher_workload] (&#xA;      [teacher_id] bigint,&#xA;      [semester_id] bigint,&#xA;      [grade_count] int,&#xA;      [course_count] int,&#xA;      [student_count] int,&#xA;      [avg_grade] decimal(3,2),&#xA;&#x9;  [grade_stddev] DECIMAL(4,2),&#xA;&#x9;  [grade_variance] DECIMAL(4,2),&#xA;      [exam_count] int,&#xA;      [test_count] int,&#xA;&#x9;  [pass_rate] DECIMAL(5,2)&#xA;      &#xA;&#x9;  CONSTRAINT PK_teacher_workload PRIMARY KEY (teacher_id, semester_id)&#xA;);&#xA;&#xA;&#xA;INSERT INTO dim_teacher_workload &#xA;SELECT &#xA;    teacher_id,&#xA;    semester_id,&#xA;    COUNT(*) as grade_count,&#xA;    COUNT(DISTINCT course) as course_count,&#xA;    COUNT(DISTINCT student_id) as student_count,&#xA;    AVG(grade) as avg_grade,&#xA;&#x9;STDEV(grade) as grade_stddev,&#xA;&#x9;VAR(grade) as grade_variance,&#xA;    SUM(CASE WHEN exam = 'E' THEN 1 ELSE 0 END) as exam_count,&#xA;    SUM(CASE WHEN exam = 'T' THEN 1 ELSE 0 END) as test_count,&#xA;&#x9;CAST(SUM(CAST(pass as int)) * 100.0 / COUNT(*) AS DECIMAL(5,2)) as pass_rate&#xA;FROM fact_grades&#xA;GROUP BY teacher_id, semester_id&#xA;ORDER BY teacher_id, semester_id;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              SQLTask:SqlStatementSource="DROP TABLE IF EXISTS [dim_teacher_semester_workload];&#xA;GO&#xA;&#xA;CREATE TABLE dim_teacher_semester_workload (&#xA;    workload_id BIGINT IDENTITY(1,1) PRIMARY KEY,&#xA;    teacher_id BIGINT NOT NULL,&#xA;    semester_id BIGINT NOT NULL,&#xA;    &#xA;    workload_tier VARCHAR(20) NOT NULL,&#xA;    &#xA;    CONSTRAINT UK_teacher_semester UNIQUE (teacher_id, semester_id),&#xA;);&#xA;&#xA;&#xA;&#xA;INSERT INTO dim_teacher_semester_workload (teacher_id, semester_id, workload_tier)&#xA;SELECT &#xA;    teacher_id,&#xA;    semester_id,&#xA;    CASE &#xA;        WHEN COUNT(DISTINCT student_id) &lt; 50 THEN 'light'&#xA;        WHEN COUNT(DISTINCT student_id) &lt; 150 THEN 'normal'&#xA;        ELSE 'heavy'&#xA;    END&#xA;FROM [dbo].[fact_grades]&#xA;GROUP BY teacher_id, semester_id;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
           </DTS:ObjectData>
         </DTS:Executable>
       </DTS:Executables>
@@ -808,6 +808,7 @@
     <DTS:Executable
       DTS:refId="Package\Data stagging"
       DTS:CreationName="STOCK:SEQUENCE"
+      DTS:DelayValidation="True"
       DTS:Description="Sequence Container"
       DTS:DTSID="{E53FAC58-6A4C-4435-83EA-066052372B57}"
       DTS:ExecutableType="STOCK:SEQUENCE"
@@ -996,7 +997,7 @@
                     <property
                       dataType="System.String"
                       description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
-                      name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                      name="FastLoadOptions">TABLOCK</property>
                     <property
                       dataType="System.Int32"
                       description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
@@ -2785,7 +2786,7 @@
     <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Constraint]"
       DTS:CreationName=""
-      DTS:DTSID="{A7DAFDC6-EF2E-4D4D-BBE8-B4DE508968FD}"
+      DTS:DTSID="{6D2026F8-49F9-4D02-B264-8BC3E26CB57F}"
       DTS:From="Package\Data stagging"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint"
@@ -2793,7 +2794,7 @@
     <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
       DTS:CreationName=""
-      DTS:DTSID="{1AF631E1-F5CC-489C-8A00-F7E04AEA191C}"
+      DTS:DTSID="{0F24A4A2-B3F1-4E70-AEEC-4C019E518F8D}"
       DTS:From="Package\Tables"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint 1"
@@ -2801,7 +2802,7 @@
     <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
       DTS:CreationName=""
-      DTS:DTSID="{D362DD7A-910F-4EE7-A3E1-A2F7FA7088CF}"
+      DTS:DTSID="{EC029973-9AB3-4A09-BC9E-91A3511003C5}"
       DTS:From="Package\Data consistency"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint 2"
@@ -2980,34 +2981,34 @@
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="658,253"
-          Size="658,296"
+          PanelSize="657,232"
+          Size="657,275"
           Id="Package\Data consistency"
-          TopLeft="31,644" />
+          TopLeft="114.5,651.5" />
         <NodeLayout
           Size="119,42"
           Id="Package\Data enrichment\clean up"
-          TopLeft="200,623" />
+          TopLeft="191.25,504.25" />
         <NodeLayout
           Size="135,42"
           Id="Package\Data enrichment\dim courses"
-          TopLeft="310,531" />
+          TopLeft="301.25,412.25" />
         <NodeLayout
           Size="140,42"
           Id="Package\Data enrichment\dim students"
-          TopLeft="315,452" />
+          TopLeft="306.25,333.25" />
         <NodeLayout
           Size="160,42"
           Id="Package\Data enrichment\dim teacher titles"
-          TopLeft="74,529" />
+          TopLeft="65.25,410.25" />
         <NodeLayout
           Size="139,42"
           Id="Package\Data enrichment\dim teachers"
-          TopLeft="84,453" />
+          TopLeft="75.25,334.25" />
         <NodeLayout
           Size="160,42"
           Id="Package\Data enrichment\Fact table grades"
-          TopLeft="180,239" />
+          TopLeft="313.75,180.25" />
         <NodeLayout
           Size="209,42"
           Id="Package\Data enrichment\New column - course group"
@@ -3027,29 +3028,29 @@
         <NodeLayout
           Size="169,42"
           Id="Package\Data enrichment\semester dim table"
-          TopLeft="169,174" />
+          TopLeft="24,181.5" />
         <NodeLayout
           Size="208,42"
           Id="Package\Data enrichment\Student workload dim table"
-          TopLeft="160,374" />
+          TopLeft="283.5,254" />
         <NodeLayout
           Size="210,42"
           Id="Package\Data enrichment\Teacher workload dim table"
-          TopLeft="157,307" />
+          TopLeft="17,253.25" />
         <EdgeLayout
           Id="Package\Data enrichment.PrecedenceConstraints[Constraint]"
           TopLeft="227,46.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="53,0"
+              EndConnector="53.0000000000001,0"
               Start="0,0"
-              End="45.5,0">
+              End="45.5000000000001,0">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="45.5,0" />
+                    End="45.5000000000001,0" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -3094,7 +3095,7 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Data enrichment.PrecedenceConstraints[Constraint 10]"
-          TopLeft="234,551">
+          TopLeft="225.25,432.25">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -3116,7 +3117,7 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Data enrichment.PrecedenceConstraints[Constraint 11]"
-          TopLeft="377.5,573">
+          TopLeft="368.75,454.25">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -3176,26 +3177,26 @@
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-138.5,34"
+              EndConnector="-283.5,41.5"
               Start="0,0"
-              End="-138.5,26.5">
+              End="-283.5,34">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,13" />
+                    End="0,16.75" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,13"
-                    Point2="0,17"
-                    Point3="-4,17" />
+                    Point1="0,16.75"
+                    Point2="0,20.75"
+                    Point3="-4,20.75" />
                   <mssgle:LineSegment
-                    End="-134.5,17" />
+                    End="-279.5,20.75" />
                   <mssgle:CubicBezierSegment
-                    Point1="-134.5,17"
-                    Point2="-138.5,17"
-                    Point3="-138.5,21" />
+                    Point1="-279.5,20.75"
+                    Point2="-283.5,20.75"
+                    Point3="-283.5,24.75" />
                   <mssgle:LineSegment
-                    End="-138.5,26.5" />
+                    End="-283.5,34" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -3206,18 +3207,18 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Data enrichment.PrecedenceConstraints[Constraint 4]"
-          TopLeft="256.75,216">
+          TopLeft="193,201.875">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,23"
+              EndConnector="120.75,0"
               Start="0,0"
-              End="0,15.5">
+              End="113.25,0">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,15.5" />
+                    End="113.25,0" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -3228,18 +3229,30 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Data enrichment.PrecedenceConstraints[Constraint 5]"
-          TopLeft="261,281">
+          TopLeft="393.75,222.25">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,26"
+              EndConnector="-271.75,31"
               Start="0,0"
-              End="0,18.5">
+              End="-271.75,23.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,18.5" />
+                    End="0,11.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,11.5"
+                    Point2="0,15.5"
+                    Point3="-4,15.5" />
+                  <mssgle:LineSegment
+                    End="-267.75,15.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-267.75,15.5"
+                    Point2="-271.75,15.5"
+                    Point3="-271.75,19.5" />
+                  <mssgle:LineSegment
+                    End="-271.75,23.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -3250,18 +3263,18 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Data enrichment.PrecedenceConstraints[Constraint 6]"
-          TopLeft="263,349">
+          TopLeft="227,274.625">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,25"
+              EndConnector="56.5,0"
               Start="0,0"
-              End="0,17.5">
+              End="49,0">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,17.5" />
+                    End="49,0" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -3272,30 +3285,30 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Data enrichment.PrecedenceConstraints[Constraint 7]"
-          TopLeft="264,416">
+          TopLeft="387.5,296">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-110.5,37"
+              EndConnector="-242.75,38.25"
               Start="0,0"
-              End="-110.5,29.5">
+              End="-242.75,30.75">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,14.5" />
+                    End="0,15.125" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,14.5"
-                    Point2="0,18.5"
-                    Point3="-4,18.5" />
+                    Point1="0,15.125"
+                    Point2="0,19.125"
+                    Point3="-4,19.125" />
                   <mssgle:LineSegment
-                    End="-106.5,18.5" />
+                    End="-238.75,19.125" />
                   <mssgle:CubicBezierSegment
-                    Point1="-106.5,18.5"
-                    Point2="-110.5,18.5"
-                    Point3="-110.5,22.5" />
+                    Point1="-238.75,19.125"
+                    Point2="-242.75,19.125"
+                    Point3="-242.75,23.125" />
                   <mssgle:LineSegment
-                    End="-110.5,29.5" />
+                    End="-242.75,30.75" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -3306,18 +3319,18 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Data enrichment.PrecedenceConstraints[Constraint 8]"
-          TopLeft="223,473.5">
+          TopLeft="214.25,354.75">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="92,0"
+              EndConnector="92.0000000000001,0"
               Start="0,0"
-              End="84.5,0">
+              End="84.5000000000001,0">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="84.5,0" />
+                    End="84.5000000000001,0" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -3328,7 +3341,7 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Data enrichment.PrecedenceConstraints[Constraint 9]"
-          TopLeft="385,494">
+          TopLeft="376.25,375.25">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -3363,14 +3376,14 @@
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="567,720"
-          Size="567,763"
+          PanelSize="558,601"
+          Size="558,644"
           Id="Package\Data enrichment"
-          TopLeft="72,983" />
+          TopLeft="161,956.25" />
         <NodeLayout
           Size="181,42"
           Id="Package\Data stagging\Import course groups"
-          TopLeft="134,132" />
+          TopLeft="111,136" />
         <NodeLayout
           Size="146,42"
           Id="Package\Data stagging\Import grades"
@@ -3437,26 +3450,26 @@
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-262.5,53"
+              EndConnector="-285.5,57"
               Start="0,0"
-              End="-262.5,45.5">
+              End="-285.5,49.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,22.5" />
+                    End="0,24.5" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,22.5"
-                    Point2="0,26.5"
-                    Point3="-4,26.5" />
+                    Point1="0,24.5"
+                    Point2="0,28.5"
+                    Point3="-4,28.5" />
                   <mssgle:LineSegment
-                    End="-258.5,26.5" />
+                    End="-281.5,28.5" />
                   <mssgle:CubicBezierSegment
-                    Point1="-258.5,26.5"
-                    Point2="-262.5,26.5"
-                    Point3="-262.5,30.5" />
+                    Point1="-281.5,28.5"
+                    Point2="-285.5,28.5"
+                    Point3="-285.5,32.5" />
                   <mssgle:LineSegment
-                    End="-262.5,45.5" />
+                    End="-285.5,49.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -3467,18 +3480,18 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Data stagging.PrecedenceConstraints[Constraint 3]"
-          TopLeft="315,154.5">
+          TopLeft="292,156.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="46,0"
+              EndConnector="69,0"
               Start="0,0"
-              End="38.5,0">
+              End="61.5,0">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="38.5,0" />
+                    End="61.5,0" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -3490,10 +3503,10 @@
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="635,232"
-          Size="635,275"
+          PanelSize="640,235"
+          Size="640,278"
           Id="Package\Data stagging"
-          TopLeft="35,339" />
+          TopLeft="118.75,341.75" />
         <NodeLayout
           Size="170,42"
           Id="Package\Tables\Table course group"
@@ -3617,24 +3630,24 @@
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="635,232"
-          Size="635,275"
+          PanelSize="640,208"
+          Size="640,251"
           Id="Package\Tables"
-          TopLeft="41,29" />
+          TopLeft="126.5,49" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
-          TopLeft="356.25,614">
+          TopLeft="440.875,619.75">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,30"
+              EndConnector="0,31.75"
               Start="0,0"
-              End="0,22.5">
+              End="0,24.25">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,22.5" />
+                    End="0,24.25" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -3645,18 +3658,18 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 1]"
-          TopLeft="355.5,304">
+          TopLeft="442.625,300">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,35"
+              EndConnector="0,41.75"
               Start="0,0"
-              End="0,27.5">
+              End="0,34.25">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,27.5" />
+                    End="0,34.25" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -3667,18 +3680,18 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 2]"
-          TopLeft="357.75,940">
+          TopLeft="441.5,926.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,43"
+              EndConnector="0,29.75"
               Start="0,0"
-              End="0,35.5">
+              End="0,22.25">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,35.5" />
+                    End="0,22.25" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -3694,7 +3707,7 @@
     design-time-name="Package\Data stagging\Import course groups">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="171,42"
           Id="Package\Data stagging\Import course groups\OLE DB Destination"
@@ -3722,9 +3735,7 @@
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -3747,7 +3758,7 @@
     design-time-name="Package\Data stagging\Import grades">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="174,42"
           Id="Package\Data stagging\Import grades\Source - grades_csv"
@@ -3775,7 +3786,9 @@
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -3902,7 +3915,7 @@
     design-time-name="Package\Data stagging\Import teachers">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="171,42"
           Id="Package\Data stagging\Import teachers\OLE DB Destination"
@@ -3930,7 +3943,9 @@
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
