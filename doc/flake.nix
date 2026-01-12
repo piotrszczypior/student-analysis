@@ -13,6 +13,7 @@
       devShells.${system}.default = pkgs.mkShell {
         packages = with pkgs; [
           python312
+          texlive.combined.scheme-full
 
           (pkgs.python312.withPackages (ps: with ps; [
             pygments

@@ -1,6 +1,6 @@
 # Fdb version 4
-["pdflatex"] 1768132460.21164 "/home/piotrszczypior/master/student-analysis/doc/main.tex" "main.pdf" "main" 1768132461.45586 0
-  "/home/piotrszczypior/master/student-analysis/doc/main.tex" 1768067242 1640 085f0f54efccaa24ca8bfca0b7380967 ""
+["pdflatex"] 1768249107.87468 "/home/piotrszczypior/master/student-analysis/doc/main.tex" "main.pdf" "main" 1768249109.07225 0
+  "/home/piotrszczypior/master/student-analysis/doc/main.tex" 1768170263.87046 1668 6950d1fd2e269e18e7935eb4852dda19 ""
   "/nix/store/4axg4xwsbgmj7vcq58554fvi4bpi97xb-texlive-combined-full-2024-final-texmfdist/fonts/enc/dvips/cm-super/cm-super-ts1.enc" 1 2900 1537cc8184ad1792082cd229ecc269f4 ""
   "/nix/store/4axg4xwsbgmj7vcq58554fvi4bpi97xb-texlive-combined-full-2024-final-texmfdist/fonts/enc/dvips/pl/plrm.enc" 1 1944 1845592c00bbe510359fd6887a83ff72 ""
   "/nix/store/4axg4xwsbgmj7vcq58554fvi4bpi97xb-texlive-combined-full-2024-final-texmfdist/fonts/enc/dvips/pl/plsc.enc" 1 1970 17f08459267325f59652d212eb7ed719 ""
@@ -278,12 +278,14 @@
   "_minted/_FAD58DE7366495DB4650CFEFAC2FCD61.index.minted" 1768132051.90322 1858 e635d82e8be6d2e5c66b4be88e2267b0 ""
   "_minted/default.style.minted" 1768071676.82539 6426 e1fb43a91491f41b33310478eee48cdb ""
   "img/pipeline.pdf" 1768131666.88542 2916519 44413aca25d75f1882f07a0f30601141 ""
-  "main.aux" 1768132461.39017 2425 ca9d483de3eef992bbfb24ffccdddd38 "pdflatex"
-  "main.out" 1768132461.39117 2221 365589ddd3c0802d04ddf295defbb810 "pdflatex"
-  "main.tex" 1768067242 1640 085f0f54efccaa24ca8bfca0b7380967 ""
+  "img/star-schema.png" 1768141333.13717 30088 b07265f6a3d169deeda405445c2633e7 ""
+  "main.aux" 1768249109.00622 2963 66d6678a171442b56e9a93d574be1507 "pdflatex"
+  "main.out" 1768249109.00722 2400 e05a557b1f1a2e8c4cba3f9071729328 "pdflatex"
+  "main.tex" 1768170263.87046 1668 6950d1fd2e269e18e7935eb4852dda19 ""
   "sekcje/00_wstęp.tex" 1768073787.83793 1617 8019294e523ff51116a8c8f39e9006f2 ""
-  "sekcje/01_section0.tex" 1768132460.04918 13517 519eefb9488b49e4a86448fc0de243d4 ""
-  "sekcje/02_section1.tex" 1768067242 28757 b2f1ed4c8a29de2b1094e4e5630b4fd6 ""
+  "sekcje/01_section0.tex" 1768141475.51256 13713 54aec02c070068a03eb1088d2dda4b21 ""
+  "sekcje/02_section1.tex" 1768169690.23692 14 b7dc5e2be51ed8d2120e7ee6ffa68ef4 ""
+  "sekcje/03_section2.tex" 1768249107.72524 204 870008a9c521ea00b95b9fdcff579c49 ""
   "sekcje/99_bibliography.tex" 1768067242 1336 49c2c1a0129b62e460808664793a8ad3 ""
   "title.tex" 1768084684.2777 652 20a8885b3640fa2fb22eb85ff65ee0de ""
   (generated)
