@@ -51,6 +51,10 @@
       <Name>Dim Teacher Semester Workload.dim</Name>
       <FullPath>Dim Teacher Semester Workload.dim</FullPath>
     </ProjectItem>
+    <ProjectItem>
+      <Name>Dim Teacher Semester Workload 2.dim</Name>
+      <FullPath>Dim Teacher Semester Workload 2.dim</FullPath>
+    </ProjectItem>
   </Dimensions>
   <DataSources>
     <ProjectItem>

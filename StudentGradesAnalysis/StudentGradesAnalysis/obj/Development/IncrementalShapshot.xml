@@ -26,7 +26,7 @@
       </ObjectSnapshot>
       <ObjectSnapshot>
         <Type>Microsoft.AnalysisServices.DataSourceView</Type>
-        <TimeStamp>Y+qo8wj8ovo70/4Hfp43kSu9ytg=1/12/2026 11:57:31 PM12/29/2025 6:49:02 PM</TimeStamp>
+        <TimeStamp>3y8188mVGbTlga4wT+LhcadJ7lw=1/14/2026 8:06:46 AM12/29/2025 6:49:02 PM</TimeStamp>
         <ID>
           <String>Student Analysis DB</String>
         </ID>
@@ -82,14 +82,21 @@
       </ObjectSnapshot>
       <ObjectSnapshot>
         <Type>Microsoft.AnalysisServices.Dimension</Type>
-        <TimeStamp>aLQbU7112PWF09S7IdtMYJUk5EU=1/12/2026 10:42:53 PM1/12/2026 9:41:47 PM</TimeStamp>
+        <TimeStamp>RLTrzbhUMAjjaUOvmAM/1scuoW8=1/13/2026 9:34:48 PM1/12/2026 9:41:47 PM</TimeStamp>
         <ID>
           <String>Dim Teacher Semester Workload</String>
         </ID>
       </ObjectSnapshot>
       <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.Dimension</Type>
+        <TimeStamp>6PO2gv5nnp0F+YnHGltMOBLYZ5M=1/13/2026 11:36:31 PM1/13/2026 9:25:14 PM</TimeStamp>
+        <ID>
+          <String>Dim Teacher Semester Workload 2</String>
+        </ID>
+      </ObjectSnapshot>
+      <ObjectSnapshot>
         <Type>Microsoft.AnalysisServices.Cube</Type>
-        <TimeStamp>rNixyy+lST2OPa2FdKFyqem7FHA=1/13/2026 12:05:40 AM12/29/2025 8:30:11 PMSrE8Gd8cLeQFSdbZ2lvXf2YocB8=1/11/2026 10:50:17 PM12/29/2025 8:30:11 PM</TimeStamp>
+        <TimeStamp>EvZepTOmrIA64KdYeeO75/aECQg=1/14/2026 8:06:46 AM12/29/2025 8:30:11 PMjs8MEAsseidJX7/4XlGSRAzVPOw=1/14/2026 8:06:46 AM12/29/2025 8:30:11 PM</TimeStamp>
         <ID>
           <String>Student Analysis DB</String>
         </ID>
@@ -106,5 +113,5 @@
   </Snapshot>
   <AssemblyLocations />
   <ProcessingComplete>true</ProcessingComplete>
-  <LastDeployed>2026-01-12T23:05:42.103333Z</LastDeployed>
+  <LastDeployed>2026-01-14T07:06:48.003333Z</LastDeployed>
 </DeploymentSnapshot>

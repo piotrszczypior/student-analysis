@@ -35,6 +35,9 @@
       <Dimension>
         <ID>Dim Teacher Semester Workload</ID>
       </Dimension>
+      <Dimension>
+        <ID>Dim Teacher Semester Workload 2</ID>
+      </Dimension>
     </Dimensions>
     <Cubes>
       <Cube>
@@ -45,6 +48,22 @@
             <Partitions>
               <Partition>
                 <ID>Fact Grades</ID>
+              </Partition>
+            </Partitions>
+          </MeasureGroup>
+          <MeasureGroup>
+            <ID>Dim Teacher Semester Workload 2</ID>
+            <Partitions>
+              <Partition>
+                <ID>Dim Teacher Semester Workload 2</ID>
+              </Partition>
+            </Partitions>
+          </MeasureGroup>
+          <MeasureGroup>
+            <ID>Dim Student Workload</ID>
+            <Partitions>
+              <Partition>
+                <ID>Dim Student Workload</ID>
               </Partition>
             </Partitions>
           </MeasureGroup>

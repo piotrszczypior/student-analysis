@@ -1,6 +1,6 @@
-﻿<Dimension xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ddl2="http://schemas.microsoft.com/analysisservices/2003/engine/2" xmlns:ddl2_2="http://schemas.microsoft.com/analysisservices/2003/engine/2/2" xmlns:ddl100_100="http://schemas.microsoft.com/analysisservices/2008/engine/100/100" xmlns:ddl200="http://schemas.microsoft.com/analysisservices/2010/engine/200" xmlns:ddl200_200="http://schemas.microsoft.com/analysisservices/2010/engine/200/200" xmlns:ddl300="http://schemas.microsoft.com/analysisservices/2011/engine/300" xmlns:ddl300_300="http://schemas.microsoft.com/analysisservices/2011/engine/300/300" xmlns:ddl400="http://schemas.microsoft.com/analysisservices/2012/engine/400" xmlns:ddl400_400="http://schemas.microsoft.com/analysisservices/2012/engine/400/400" xmlns:ddl500="http://schemas.microsoft.com/analysisservices/2013/engine/500" xmlns:ddl500_500="http://schemas.microsoft.com/analysisservices/2013/engine/500/500" xmlns:dwd="http://schemas.microsoft.com/DataWarehouse/Designer/1.0" dwd:design-time-name="7d3b7bdf-005d-4a32-be52-a039ff92bf3f" xmlns="http://schemas.microsoft.com/analysisservices/2003/engine">
-  <ID>Dim Teacher Semester Workload</ID>
-  <Name>Dim Teacher Semester Workload</Name>
+﻿<Dimension xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ddl2="http://schemas.microsoft.com/analysisservices/2003/engine/2" xmlns:ddl2_2="http://schemas.microsoft.com/analysisservices/2003/engine/2/2" xmlns:ddl100_100="http://schemas.microsoft.com/analysisservices/2008/engine/100/100" xmlns:ddl200="http://schemas.microsoft.com/analysisservices/2010/engine/200" xmlns:ddl200_200="http://schemas.microsoft.com/analysisservices/2010/engine/200/200" xmlns:ddl300="http://schemas.microsoft.com/analysisservices/2011/engine/300" xmlns:ddl300_300="http://schemas.microsoft.com/analysisservices/2011/engine/300/300" xmlns:ddl400="http://schemas.microsoft.com/analysisservices/2012/engine/400" xmlns:ddl400_400="http://schemas.microsoft.com/analysisservices/2012/engine/400/400" xmlns:ddl500="http://schemas.microsoft.com/analysisservices/2013/engine/500" xmlns:ddl500_500="http://schemas.microsoft.com/analysisservices/2013/engine/500/500" xmlns:dwd="http://schemas.microsoft.com/DataWarehouse/Designer/1.0" dwd:design-time-name="b01f0938-641b-4b72-9cb5-43ff49fff276" xmlns="http://schemas.microsoft.com/analysisservices/2003/engine">
+  <ID>Dim Teacher Semester Workload 2</ID>
+  <Name>Dim Teacher Semester Workload 2</Name>
   <CreatedTimestamp>0001-01-01T00:00:00Z</CreatedTimestamp>
   <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
   <Annotations>
@@ -19,13 +19,13 @@
           <layoutmanager>
             <ddsxmlobj />
           </layoutmanager>
-          <ddscontrol controlprogid="DdsShapes.DdsObjectManagedBridge" tooltip="dim_teacher_semester_workload" left="-3076" top="-1614" logicalid="2" controlid="1" masterid="0" hint1="0" hint2="0" width="6016" height="5980" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
+          <ddscontrol controlprogid="DdsShapes.DdsObjectManagedBridge" tooltip="dim_teacher_semester_workload_2" left="-4002" top="0" logicalid="2" controlid="1" masterid="0" hint1="0" hint2="0" width="7022" height="6323" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
             <control>
-              <ddsxmlobjectstreaminitwrapper binary="000e0000801700005c170000" />
+              <ddsxmlobjectstreaminitwrapper binary="000e00006e1b0000b3180000" />
             </control>
             <layoutobject>
               <ddsxmlobj>
-                <property name="LogicalObject" value="dbo_dim_teacher_semester_workload" vartype="8" />
+                <property name="LogicalObject" value="dbo_dim_teacher_semester_workload_2" vartype="8" />
               </ddsxmlobj>
             </layoutobject>
             <shape groupshapeid="0" groupnode="0" />
@@ -55,11 +55,11 @@
     </Annotation>
     <Annotation>
       <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramBoundingLeft</Name>
-      <Value>-3076</Value>
+      <Value>-4002</Value>
     </Annotation>
     <Annotation>
       <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramBoundingTop</Name>
-      <Value>-1614</Value>
+      <Value>0</Value>
     </Annotation>
     <Annotation>
       <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramZoom</Name>
@@ -68,62 +68,73 @@
   </Annotations>
   <LastProcessed>0001-01-01T00:00:00Z</LastProcessed>
   <State>Unprocessed</State>
-  <Source xsi:type="DataSourceViewBinding" dwd:design-time-name="994c4bba-e8c1-4c9e-86c4-c6c15734c304">
+  <Source xsi:type="DataSourceViewBinding" dwd:design-time-name="8cc43235-aaf8-4dee-b854-977732bfa1f9">
     <DataSourceViewID>Student Analysis DB</DataSourceViewID>
   </Source>
-  <ErrorConfiguration dwd:design-time-name="bee97c3e-32d2-48d9-bdb1-1915b973e35d">
+  <ErrorConfiguration dwd:design-time-name="781fc222-04c8-4526-befb-14fb7a598d65">
     <KeyNotFound>ReportAndStop</KeyNotFound>
     <KeyDuplicate>ReportAndStop</KeyDuplicate>
     <NullKeyNotAllowed>ReportAndStop</NullKeyNotAllowed>
   </ErrorConfiguration>
   <CurrentStorageMode>Molap</CurrentStorageMode>
   <Attributes>
-    <Attribute dwd:design-time-name="73ac7a7c-ac3a-422b-aedd-c384ef7e065e">
-      <ID>Workload Id</ID>
-      <Name>Workload Id</Name>
+    <Attribute dwd:design-time-name="ab45bbc4-f904-44e4-bfe9-a345b8f1894c">
+      <ID>Composite Key</ID>
+      <Name>Composite Key</Name>
       <Usage>Key</Usage>
       <KeyColumns>
-        <KeyColumn dwd:design-time-name="65582697-3a9b-4e43-a359-d46385c2c995">
-          <DataType>BigInt</DataType>
-          <Source xsi:type="ColumnBinding" dwd:design-time-name="3e7434e0-8efa-4068-90e9-6078326d5ed4">
-            <TableID>dbo_dim_teacher_semester_workload</TableID>
-            <ColumnID>workload_id</ColumnID>
+        <KeyColumn dwd:design-time-name="ca2131b3-ec52-446b-a97d-fca4ac04ada9">
+          <DataType>WChar</DataType>
+          <DataSize>49</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="84942205-1242-4b5d-b7ba-7d5b0ca43793">
+            <TableID>dbo_dim_teacher_semester_workload_2</TableID>
+            <ColumnID>CompositeKey</ColumnID>
           </Source>
         </KeyColumn>
       </KeyColumns>
-      <NameColumn dwd:design-time-name="789b3dff-a513-43c3-99f3-3851a8d1e093">
-        <DataType>WChar</DataType>
-        <DataSize>20</DataSize>
-        <Source xsi:type="ColumnBinding" dwd:design-time-name="dda8ad21-fe48-4932-aec9-155477d54deb">
-          <TableID>dbo_dim_teacher_semester_workload</TableID>
-          <ColumnID>workload_tier</ColumnID>
-        </Source>
-      </NameColumn>
       <AttributeRelationships>
-        <AttributeRelationship dwd:design-time-name="a604ed8e-05e0-4cac-bd6e-21c8013c5d30">
-          <AttributeID>Teacher Id</AttributeID>
-          <Name>Teacher Id</Name>
-        </AttributeRelationship>
-        <AttributeRelationship dwd:design-time-name="28010a19-fa32-4c20-8c61-04e5aefc5773">
-          <AttributeID>Semester Id</AttributeID>
-          <Name>Semester Id</Name>
-        </AttributeRelationship>
-        <AttributeRelationship dwd:design-time-name="d58f7ae5-b993-4358-a9b2-2283e4a1c06d">
+        <AttributeRelationship dwd:design-time-name="d83118b5-750c-4bf3-8fb5-a5307f2a1730">
           <AttributeID>Workload Tier</AttributeID>
           <Name>Workload Tier</Name>
         </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="e1aad5b7-b216-4aa7-b1ce-444a614a2340">
+          <AttributeID>Teacher Id</AttributeID>
+          <Name>Teacher Id</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="cc240395-5dcf-4276-a9ce-c247b11bf86a">
+          <AttributeID>Semester Id</AttributeID>
+          <Name>Semester Id</Name>
+        </AttributeRelationship>
       </AttributeRelationships>
+      <OrderBy>Key</OrderBy>
       <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
       <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
     </Attribute>
-    <Attribute dwd:design-time-name="d326e878-903c-4863-8e10-5a73fe0dcd0d">
+    <Attribute dwd:design-time-name="9a6bd177-229f-4e6b-a7bc-77937f8f80b0">
+      <ID>Workload Tier</ID>
+      <Name>Workload Tier</Name>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="10f2191b-26fa-4ba8-9450-548d60db828d">
+          <DataType>WChar</DataType>
+          <DataSize>20</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="9b734e70-e367-4486-9109-8d797680e329">
+            <TableID>dbo_dim_teacher_semester_workload_2</TableID>
+            <ColumnID>workload_tier</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="16db5bf6-c9b7-4c21-9aa8-7a56ca6d9017">
       <ID>Teacher Id</ID>
       <Name>Teacher Id</Name>
       <KeyColumns>
-        <KeyColumn dwd:design-time-name="61f8cf31-d398-4535-bee6-3b0abffe869f">
+        <KeyColumn dwd:design-time-name="ac500301-9d3c-4092-8810-fae556be7fb5">
           <DataType>BigInt</DataType>
-          <Source xsi:type="ColumnBinding" dwd:design-time-name="93f46e47-dbce-4183-836f-19f8d6af37ed">
-            <TableID>dbo_dim_teacher_semester_workload</TableID>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="4fe90208-27f8-47be-9e72-b43337dd7c94">
+            <TableID>dbo_dim_teacher_semester_workload_2</TableID>
             <ColumnID>teacher_id</ColumnID>
           </Source>
         </KeyColumn>
@@ -133,36 +144,20 @@
       <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
       <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
     </Attribute>
-    <Attribute dwd:design-time-name="0db300ce-296f-42a0-89dc-39ab16df8b70">
+    <Attribute dwd:design-time-name="7c719c6c-10e6-4979-afca-b77b9bc04531">
       <ID>Semester Id</ID>
       <Name>Semester Id</Name>
       <KeyColumns>
-        <KeyColumn dwd:design-time-name="97366258-3563-4f56-9f2e-0adcaacc9033">
+        <KeyColumn dwd:design-time-name="98838350-ab28-4ad9-8081-e57d7637c635">
           <DataType>BigInt</DataType>
-          <Source xsi:type="ColumnBinding" dwd:design-time-name="d0104a92-e76a-444a-9d37-a2dd40547511">
-            <TableID>dbo_dim_teacher_semester_workload</TableID>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="0b4f8ca8-2636-4722-a7bf-ece1b8c8ba34">
+            <TableID>dbo_dim_teacher_semester_workload_2</TableID>
             <ColumnID>semester_id</ColumnID>
           </Source>
         </KeyColumn>
       </KeyColumns>
       <OrderBy>Key</OrderBy>
       <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
-      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
-      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
-    </Attribute>
-    <Attribute dwd:design-time-name="4ce798e0-3986-49d3-81b5-265a38999db4">
-      <ID>Workload Tier</ID>
-      <Name>Workload Tier</Name>
-      <KeyColumns>
-        <KeyColumn dwd:design-time-name="668e3948-c79c-4c54-9dfd-bb568bbb0768">
-          <DataType>WChar</DataType>
-          <DataSize>20</DataSize>
-          <Source xsi:type="ColumnBinding" dwd:design-time-name="b96fb12b-e0da-426e-885d-add513e142a4">
-            <TableID>dbo_dim_teacher_semester_workload</TableID>
-            <ColumnID>workload_tier</ColumnID>
-          </Source>
-        </KeyColumn>
-      </KeyColumns>
       <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
       <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
     </Attribute>
