@@ -12,8 +12,8 @@
   DTS:LocaleID="1033"
   DTS:MaxErrorCount="0"
   DTS:ObjectName="Package"
-  DTS:VersionBuild="170"
-  DTS:VersionGUID="{F00D55BA-7792-4A4C-9784-4FC7087D7730}">
+  DTS:VersionBuild="178"
+  DTS:VersionGUID="{13C5846A-9B0B-4128-9849-FF01ED5C7A77}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -376,7 +376,7 @@
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
               SQLTask:Connection="{7E33B311-8F34-4A48-90C3-881CE798482E}"
-              SQLTask:SqlStatementSource="IF NOT EXISTS (SELECT 1 FROM stg_teacher_title WHERE title_id = 0)&#xA;BEGIN&#xA;    INSERT INTO stg_teacher_title (title_id, title_long, title)&#xA;    VALUES (0, 'Unknown Title', 'UNK');&#xA;END&#xA;&#xA;INSERT INTO stg_teachers (teacher_id, gender, faculty, institute, title_id)&#xA;SELECT g.teacher_id, 'U', NULL, 'UNK', 0&#xA;FROM stg_grades as g&#xA;LEFT JOIN stg_teachers AS t ON g.teacher_id = t.teacher_id&#xA;WHERE (t.teacher_id IS NULL)&#xA;GROUP BY g.teacher_id;&#xA;GO" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              SQLTask:SqlStatementSource="IF NOT EXISTS (SELECT 1 FROM stg_teacher_title WHERE title_id = 0)&#xA;BEGIN&#xA;    INSERT INTO stg_teacher_title (title_id, title_long, title)&#xA;    VALUES (0, 'Unknown Title', 'UNK')&#xA;END;&#xA;&#xA;INSERT INTO stg_teachers (teacher_id, gender, faculty, institute, title_id)&#xA;SELECT g.teacher_id, 'U', NULL, 'UNK', 0&#xA;FROM stg_grades as g&#xA;LEFT JOIN stg_teachers AS t ON g.teacher_id = t.teacher_id&#xA;WHERE (t.teacher_id IS NULL)&#xA;GROUP BY g.teacher_id;&#xA;GO" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
           </DTS:ObjectData>
         </DTS:Executable>
         <DTS:Executable
@@ -427,7 +427,7 @@
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
               SQLTask:Connection="{7E33B311-8F34-4A48-90C3-881CE798482E}"
-              SQLTask:SqlStatementSource="ALTER TABLE stg_teachers&#xA;ALTER COLUMN gender VARCHAR(1);&#xA;&#xA;UPDATE stg_teachers&#xA;SET gender = CASE &#xA;    WHEN gender = '1' THEN 'M'&#xA;    WHEN gender = '2' THEN 'K'&#xA;    ELSE 'U'&#xA;END;&#xA;&#xA;UPDATE stg_teachers &#xA;SET institute = 'UNK'&#xA;WHERE institute IS NULL OR institute = '';&#xA;&#xA;UPDATE stg_teachers &#xA;SET faculty = 255&#xA;WHERE faculty IS NULL;&#xA;&#xA;GO" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              SQLTask:SqlStatementSource="ALTER TABLE stg_teachers&#xA;ALTER COLUMN gender VARCHAR(1);&#xA;&#xA;&#xA;UPDATE stg_teachers&#xA;SET gender = CASE &#xA;    WHEN gender = '1' THEN 'M'&#xA;    WHEN gender = '2' THEN 'K'&#xA;    ELSE 'U'&#xA;END;&#xA;&#xA;&#xA;UPDATE stg_teachers &#xA;SET faculty = 255&#xA;WHERE faculty IS NULL;&#xA;&#xA;&#xA;UPDATE stg_teachers &#xA;SET institute = 'UNK'&#xA;WHERE institute IS NULL OR institute = '';&#xA;&#xA;&#xA;GO" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
           </DTS:ObjectData>
         </DTS:Executable>
       </DTS:Executables>
@@ -3707,7 +3707,7 @@
     design-time-name="Package\Data stagging\Import course groups">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="171,42"
           Id="Package\Data stagging\Import course groups\OLE DB Destination"
@@ -3735,7 +3735,9 @@
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
