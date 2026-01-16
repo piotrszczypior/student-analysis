@@ -1,59 +1,59 @@
-﻿<Cube xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ddl2="http://schemas.microsoft.com/analysisservices/2003/engine/2" xmlns:ddl2_2="http://schemas.microsoft.com/analysisservices/2003/engine/2/2" xmlns:ddl100_100="http://schemas.microsoft.com/analysisservices/2008/engine/100/100" xmlns:ddl200="http://schemas.microsoft.com/analysisservices/2010/engine/200" xmlns:ddl200_200="http://schemas.microsoft.com/analysisservices/2010/engine/200/200" xmlns:ddl300="http://schemas.microsoft.com/analysisservices/2011/engine/300" xmlns:ddl300_300="http://schemas.microsoft.com/analysisservices/2011/engine/300/300" xmlns:ddl400="http://schemas.microsoft.com/analysisservices/2012/engine/400" xmlns:ddl400_400="http://schemas.microsoft.com/analysisservices/2012/engine/400/400" xmlns:ddl500="http://schemas.microsoft.com/analysisservices/2013/engine/500" xmlns:ddl500_500="http://schemas.microsoft.com/analysisservices/2013/engine/500/500" xmlns:dwd="http://schemas.microsoft.com/DataWarehouse/Designer/1.0" dwd:design-time-name="53bd534c-ddc2-459f-8c5f-a9577d3952fd" xmlns="http://schemas.microsoft.com/analysisservices/2003/engine">
+﻿<Cube xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ddl2="http://schemas.microsoft.com/analysisservices/2003/engine/2" xmlns:ddl2_2="http://schemas.microsoft.com/analysisservices/2003/engine/2/2" xmlns:ddl100_100="http://schemas.microsoft.com/analysisservices/2008/engine/100/100" xmlns:ddl200="http://schemas.microsoft.com/analysisservices/2010/engine/200" xmlns:ddl200_200="http://schemas.microsoft.com/analysisservices/2010/engine/200/200" xmlns:ddl300="http://schemas.microsoft.com/analysisservices/2011/engine/300" xmlns:ddl300_300="http://schemas.microsoft.com/analysisservices/2011/engine/300/300" xmlns:ddl400="http://schemas.microsoft.com/analysisservices/2012/engine/400" xmlns:ddl400_400="http://schemas.microsoft.com/analysisservices/2012/engine/400/400" xmlns:ddl500="http://schemas.microsoft.com/analysisservices/2013/engine/500" xmlns:ddl500_500="http://schemas.microsoft.com/analysisservices/2013/engine/500/500" xmlns:dwd="http://schemas.microsoft.com/DataWarehouse/Designer/1.0" dwd:design-time-name="19832def-e5c8-4208-bdf1-1cd1901c3073" xmlns="http://schemas.microsoft.com/analysisservices/2003/engine">
   <ID>Student Analysis DB</ID>
   <MeasureGroups>
     <MeasureGroup>
+      <ID>Teacher Semester Workload</ID>
+      <Partitions>
+        <Partition dwd:design-time-name="19d8e97c-0dad-42c2-a67e-afd2f572bfca">
+          <ID>Teacher Semester Workload</ID>
+          <Name>Teacher Semester Workload</Name>
+          <CreatedTimestamp>0001-01-01T00:00:00Z</CreatedTimestamp>
+          <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
+          <LastProcessed>0001-01-01T00:00:00Z</LastProcessed>
+          <State>Unprocessed</State>
+          <Source xsi:type="DsvTableBinding" dwd:design-time-name="b4631ac9-3225-4878-90da-7a9033cb682a">
+            <DataSourceViewID>Student Analysis DB</DataSourceViewID>
+            <TableID>dbo_teacher_semester_workload</TableID>
+          </Source>
+          <StorageMode>Molap</StorageMode>
+          <CurrentStorageMode>Molap</CurrentStorageMode>
+          <ProcessingMode>Regular</ProcessingMode>
+        </Partition>
+      </Partitions>
+    </MeasureGroup>
+    <MeasureGroup>
+      <ID>Student Semester Workload</ID>
+      <Partitions>
+        <Partition dwd:design-time-name="ce196c4c-a10a-4359-8d05-e4c0ee23157d">
+          <ID>Student Semester Workload</ID>
+          <Name>Student Semester Workload</Name>
+          <CreatedTimestamp>0001-01-01T00:00:00Z</CreatedTimestamp>
+          <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
+          <LastProcessed>0001-01-01T00:00:00Z</LastProcessed>
+          <State>Unprocessed</State>
+          <Source xsi:type="DsvTableBinding" dwd:design-time-name="761b1473-3995-4ead-9cf1-1c30ff62ced5">
+            <DataSourceViewID>Student Analysis DB</DataSourceViewID>
+            <TableID>dbo_student_semester_workload</TableID>
+          </Source>
+          <StorageMode>Molap</StorageMode>
+          <CurrentStorageMode>Molap</CurrentStorageMode>
+          <ProcessingMode>Regular</ProcessingMode>
+        </Partition>
+      </Partitions>
+    </MeasureGroup>
+    <MeasureGroup>
       <ID>Fact Grades</ID>
       <Partitions>
-        <Partition dwd:design-time-name="338f40df-9377-4991-9b79-e0fc3cadbc64">
+        <Partition dwd:design-time-name="886223d9-ac90-4c7b-9445-83510a1ebf9a">
           <ID>Fact Grades</ID>
           <Name>Fact Grades</Name>
           <CreatedTimestamp>0001-01-01T00:00:00Z</CreatedTimestamp>
           <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
           <LastProcessed>0001-01-01T00:00:00Z</LastProcessed>
           <State>Unprocessed</State>
-          <Source xsi:type="DsvTableBinding" dwd:design-time-name="b7331f4a-9569-40e2-a9dd-390d0e4e23a8">
+          <Source xsi:type="DsvTableBinding" dwd:design-time-name="c4b56b52-3c50-47f4-ab94-4bf135a9a669">
             <DataSourceViewID>Student Analysis DB</DataSourceViewID>
             <TableID>dbo_fact_grades</TableID>
-          </Source>
-          <StorageMode>Molap</StorageMode>
-          <CurrentStorageMode>Molap</CurrentStorageMode>
-          <ProcessingMode>Regular</ProcessingMode>
-        </Partition>
-      </Partitions>
-    </MeasureGroup>
-    <MeasureGroup>
-      <ID>Dim Teacher Semester Workload 2</ID>
-      <Partitions>
-        <Partition dwd:design-time-name="4dcea56c-0e27-4d49-989a-50f7fadfea19">
-          <ID>Dim Teacher Semester Workload 2</ID>
-          <Name>Dim Teacher Semester Workload 2</Name>
-          <CreatedTimestamp>0001-01-01T00:00:00Z</CreatedTimestamp>
-          <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
-          <LastProcessed>0001-01-01T00:00:00Z</LastProcessed>
-          <State>Unprocessed</State>
-          <Source xsi:type="DsvTableBinding" dwd:design-time-name="a790fda7-e560-4678-bbe7-66474e098f28">
-            <DataSourceViewID>Student Analysis DB</DataSourceViewID>
-            <TableID>dbo_dim_teacher_semester_workload_2</TableID>
-          </Source>
-          <StorageMode>Molap</StorageMode>
-          <CurrentStorageMode>Molap</CurrentStorageMode>
-          <ProcessingMode>Regular</ProcessingMode>
-        </Partition>
-      </Partitions>
-    </MeasureGroup>
-    <MeasureGroup>
-      <ID>Dim Student Workload</ID>
-      <Partitions>
-        <Partition dwd:design-time-name="723537eb-f2f1-42c4-afdb-f559f93a21fa">
-          <ID>Dim Student Workload</ID>
-          <Name>Dim Student Workload</Name>
-          <CreatedTimestamp>0001-01-01T00:00:00Z</CreatedTimestamp>
-          <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
-          <LastProcessed>0001-01-01T00:00:00Z</LastProcessed>
-          <State>Unprocessed</State>
-          <Source xsi:type="DsvTableBinding" dwd:design-time-name="38ff6a2c-56eb-4ec0-81a5-2ee26d83aec4">
-            <DataSourceViewID>Student Analysis DB</DataSourceViewID>
-            <TableID>dbo_dim_student_workload</TableID>
           </Source>
           <StorageMode>Molap</StorageMode>
           <CurrentStorageMode>Molap</CurrentStorageMode>

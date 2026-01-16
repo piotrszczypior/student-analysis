@@ -33,10 +33,7 @@
         <ID>Dim Exam Type</ID>
       </Dimension>
       <Dimension>
-        <ID>Dim Teacher Semester Workload</ID>
-      </Dimension>
-      <Dimension>
-        <ID>Dim Teacher Semester Workload 2</ID>
+        <ID>Dim Teacher Semester Workload Tier</ID>
       </Dimension>
     </Dimensions>
     <Cubes>
@@ -44,26 +41,26 @@
         <ID>Student Analysis DB</ID>
         <MeasureGroups>
           <MeasureGroup>
+            <ID>Teacher Semester Workload</ID>
+            <Partitions>
+              <Partition>
+                <ID>Teacher Semester Workload</ID>
+              </Partition>
+            </Partitions>
+          </MeasureGroup>
+          <MeasureGroup>
+            <ID>Student Semester Workload</ID>
+            <Partitions>
+              <Partition>
+                <ID>Student Semester Workload</ID>
+              </Partition>
+            </Partitions>
+          </MeasureGroup>
+          <MeasureGroup>
             <ID>Fact Grades</ID>
             <Partitions>
               <Partition>
                 <ID>Fact Grades</ID>
-              </Partition>
-            </Partitions>
-          </MeasureGroup>
-          <MeasureGroup>
-            <ID>Dim Teacher Semester Workload 2</ID>
-            <Partitions>
-              <Partition>
-                <ID>Dim Teacher Semester Workload 2</ID>
-              </Partition>
-            </Partitions>
-          </MeasureGroup>
-          <MeasureGroup>
-            <ID>Dim Student Workload</ID>
-            <Partitions>
-              <Partition>
-                <ID>Dim Student Workload</ID>
               </Partition>
             </Partitions>
           </MeasureGroup>

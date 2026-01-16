@@ -48,12 +48,8 @@
       <FullPath>Dim Exam Type.dim</FullPath>
     </ProjectItem>
     <ProjectItem>
-      <Name>Dim Teacher Semester Workload.dim</Name>
-      <FullPath>Dim Teacher Semester Workload.dim</FullPath>
-    </ProjectItem>
-    <ProjectItem>
-      <Name>Dim Teacher Semester Workload 2.dim</Name>
-      <FullPath>Dim Teacher Semester Workload 2.dim</FullPath>
+      <Name>Dim Teacher Semester Workload Tier.dim</Name>
+      <FullPath>Dim Teacher Semester Workload Tier.dim</FullPath>
     </ProjectItem>
   </Dimensions>
   <DataSources>

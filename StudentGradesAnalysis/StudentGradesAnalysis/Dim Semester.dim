@@ -1,4 +1,4 @@
-﻿<Dimension xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ddl2="http://schemas.microsoft.com/analysisservices/2003/engine/2" xmlns:ddl2_2="http://schemas.microsoft.com/analysisservices/2003/engine/2/2" xmlns:ddl100_100="http://schemas.microsoft.com/analysisservices/2008/engine/100/100" xmlns:ddl200="http://schemas.microsoft.com/analysisservices/2010/engine/200" xmlns:ddl200_200="http://schemas.microsoft.com/analysisservices/2010/engine/200/200" xmlns:ddl300="http://schemas.microsoft.com/analysisservices/2011/engine/300" xmlns:ddl300_300="http://schemas.microsoft.com/analysisservices/2011/engine/300/300" xmlns:ddl400="http://schemas.microsoft.com/analysisservices/2012/engine/400" xmlns:ddl400_400="http://schemas.microsoft.com/analysisservices/2012/engine/400/400" xmlns:ddl500="http://schemas.microsoft.com/analysisservices/2013/engine/500" xmlns:ddl500_500="http://schemas.microsoft.com/analysisservices/2013/engine/500/500" xmlns:dwd="http://schemas.microsoft.com/DataWarehouse/Designer/1.0" dwd:design-time-name="f8c562f9-8a14-4808-b29e-37f1318a0739" xmlns="http://schemas.microsoft.com/analysisservices/2003/engine">
+﻿<Dimension xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ddl2="http://schemas.microsoft.com/analysisservices/2003/engine/2" xmlns:ddl2_2="http://schemas.microsoft.com/analysisservices/2003/engine/2/2" xmlns:ddl100_100="http://schemas.microsoft.com/analysisservices/2008/engine/100/100" xmlns:ddl200="http://schemas.microsoft.com/analysisservices/2010/engine/200" xmlns:ddl200_200="http://schemas.microsoft.com/analysisservices/2010/engine/200/200" xmlns:ddl300="http://schemas.microsoft.com/analysisservices/2011/engine/300" xmlns:ddl300_300="http://schemas.microsoft.com/analysisservices/2011/engine/300/300" xmlns:ddl400="http://schemas.microsoft.com/analysisservices/2012/engine/400" xmlns:ddl400_400="http://schemas.microsoft.com/analysisservices/2012/engine/400/400" xmlns:ddl500="http://schemas.microsoft.com/analysisservices/2013/engine/500" xmlns:ddl500_500="http://schemas.microsoft.com/analysisservices/2013/engine/500/500" xmlns:dwd="http://schemas.microsoft.com/DataWarehouse/Designer/1.0" dwd:design-time-name="fdb88352-7e5d-4849-88cc-5b150d0656fe" xmlns="http://schemas.microsoft.com/analysisservices/2003/engine">
   <ID>Dim Semester</ID>
   <Name>Dim Semester</Name>
   <CreatedTimestamp>0001-01-01T00:00:00Z</CreatedTimestamp>
@@ -6,6 +6,32 @@
   <Annotations>
     <Annotation>
       <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramLayout</Name>
+      <Value>
+        <dds xmlns="">
+          <diagram fontclsid="{0BE35203-8F91-11CE-9DE3-00AA004BB851}" mouseiconclsid="{0BE35204-8F91-11CE-9DE3-00AA004BB851}" defaultlayout="MSDDS.Rectilinear" defaultlineroute="MSDDS.Rectilinear" version="7" nextobject="2" scale="100" pagebreakanchorx="0" pagebreakanchory="0" pagebreaksizex="0" pagebreaksizey="0" scrollleft="-3195" scrolltop="-6284" gridx="150" gridy="150" marginx="5000" marginy="5000" zoom="100" x="9446" y="15716" backcolor="16777215" defaultpersistence="2" PrintPageNumbersMode="3" PrintMarginTop="0" PrintMarginBottom="635" PrintMarginLeft="0" PrintMarginRight="0" marqueeselectionmode="0" mousepointer="0" snaptogrid="0" autotypeannotation="1" showscrollbars="0" viewpagebreaks="0" donotforceconnectorsbehindshapes="1" backpictureclsid="{00000000-0000-0000-0000-000000000000}">
+            <font>
+              <ddsxmlobjectstreamwrapper binary="01000000900144420100065461686f6d61" />
+            </font>
+            <mouseicon>
+              <ddsxmlobjectstreamwrapper binary="6c74000000000000" />
+            </mouseicon>
+          </diagram>
+          <layoutmanager>
+            <ddsxmlobj />
+          </layoutmanager>
+          <ddscontrol controlprogid="DdsShapes.DdsObjectManagedBridge" tooltip="dim_semester" left="-1091" top="-1720" logicalid="1" controlid="1" masterid="0" hint1="0" hint2="0" width="3016" height="3149" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
+            <control>
+              <ddsxmlobjectstreaminitwrapper binary="000e0000c80b00004d0c0000" />
+            </control>
+            <layoutobject>
+              <ddsxmlobj>
+                <property name="LogicalObject" value="dbo_dim_semester" vartype="8" />
+              </ddsxmlobj>
+            </layoutobject>
+            <shape groupshapeid="0" groupnode="0" />
+          </ddscontrol>
+        </dds>
+      </Value>
     </Annotation>
     <Annotation>
       <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:ShowFriendlyNames</Name>
@@ -21,19 +47,19 @@
     </Annotation>
     <Annotation>
       <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramViewPortLeft</Name>
-      <Value>0</Value>
+      <Value>-3195</Value>
     </Annotation>
     <Annotation>
       <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramViewPortTop</Name>
-      <Value>0</Value>
+      <Value>-6284</Value>
     </Annotation>
     <Annotation>
       <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramBoundingLeft</Name>
-      <Value>0</Value>
+      <Value>-1091</Value>
     </Annotation>
     <Annotation>
       <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramBoundingTop</Name>
-      <Value>0</Value>
+      <Value>-1720</Value>
     </Annotation>
     <Annotation>
       <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramZoom</Name>
@@ -42,62 +68,66 @@
   </Annotations>
   <LastProcessed>0001-01-01T00:00:00Z</LastProcessed>
   <State>Unprocessed</State>
-  <Source xsi:type="DataSourceViewBinding" dwd:design-time-name="a2fd2231-762a-40bf-a05b-5794f97bd054">
+  <Source xsi:type="DataSourceViewBinding" dwd:design-time-name="d74fd7d2-246d-4992-ae59-bda73797d43a">
     <DataSourceViewID>Student Analysis DB</DataSourceViewID>
   </Source>
   <UnknownMember>Visible</UnknownMember>
-  <ErrorConfiguration dwd:design-time-name="39716c7a-867d-45d9-b9b0-2bb2117dc953">
+  <ErrorConfiguration dwd:design-time-name="ac501dc1-c99d-4066-bdc3-d58446a43556">
     <KeyNotFound>ReportAndStop</KeyNotFound>
     <KeyDuplicate>ReportAndStop</KeyDuplicate>
     <NullKeyNotAllowed>ReportAndStop</NullKeyNotAllowed>
   </ErrorConfiguration>
   <CurrentStorageMode>Molap</CurrentStorageMode>
   <Attributes>
-    <Attribute dwd:design-time-name="434a6e78-73dc-4e2a-a3d5-edaa6cc955d7">
+    <Attribute dwd:design-time-name="43d09a98-f9f0-42ac-b7fa-da00bbf97f0b">
       <ID>Semester Id</ID>
       <Name>Semester Id</Name>
       <Usage>Key</Usage>
       <KeyColumns>
-        <KeyColumn dwd:design-time-name="78ec0902-1fbf-441e-abb5-5a2d07eba5d1">
+        <KeyColumn dwd:design-time-name="4fa91f6e-0bb1-45a0-87bc-6106d3baeb81">
           <DataType>BigInt</DataType>
           <NullProcessing>UnknownMember</NullProcessing>
-          <Source xsi:type="ColumnBinding" dwd:design-time-name="61ce573c-05ed-419e-aa10-66f19635e391">
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="61d10ab7-a9f3-47a0-83fa-fab0b6fb4276">
             <TableID>dbo_dim_semester</TableID>
             <ColumnID>semester_id</ColumnID>
           </Source>
         </KeyColumn>
       </KeyColumns>
-      <NameColumn dwd:design-time-name="48d2d73e-28ea-4dae-a4f0-00b656c6c6f0">
+      <NameColumn dwd:design-time-name="3e8f7458-b721-47ab-9b4d-5aab1835e82a">
         <DataType>WChar</DataType>
-        <Source xsi:type="ColumnBinding" dwd:design-time-name="d6e54c39-1a06-4791-a66e-30809a6f2232">
+        <Source xsi:type="ColumnBinding" dwd:design-time-name="58a3c4b9-3ccb-42b3-8762-d7fed28fd73b">
           <TableID>dbo_dim_semester</TableID>
           <ColumnID>semester</ColumnID>
         </Source>
       </NameColumn>
       <AttributeRelationships>
-        <AttributeRelationship dwd:design-time-name="08edbe5f-4a09-45ef-bbc1-01c1f548ccf3">
+        <AttributeRelationship dwd:design-time-name="68e960eb-57a0-4a7a-bca8-226b1582eec4">
           <AttributeID>Year</AttributeID>
           <Name>Year</Name>
         </AttributeRelationship>
-        <AttributeRelationship dwd:design-time-name="c0ba232f-a0b7-43dd-82c6-3f2f6f3ccdc4">
+        <AttributeRelationship dwd:design-time-name="5733c11e-a7d0-477b-9c84-4349487a178a">
           <AttributeID>Semester Type</AttributeID>
           <Name>Semester Type</Name>
         </AttributeRelationship>
-        <AttributeRelationship dwd:design-time-name="3820a1b6-a2f6-4794-9ab3-66fbff282a31">
+        <AttributeRelationship dwd:design-time-name="726d3ba0-6983-498c-9c70-7f57ae9d15fd">
           <AttributeID>Study Year</AttributeID>
           <Name>Study Year</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="f3f110ae-6e05-4bec-8291-8fae258eaf0b">
+          <AttributeID>Semester</AttributeID>
+          <Name>Semester</Name>
         </AttributeRelationship>
       </AttributeRelationships>
       <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
       <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
     </Attribute>
-    <Attribute dwd:design-time-name="598c92a3-19e5-4633-9f5a-d2b84bd12fc1">
+    <Attribute dwd:design-time-name="679c877f-412c-4096-a44f-4810765879fc">
       <ID>Year</ID>
       <Name>Year</Name>
       <KeyColumns>
-        <KeyColumn dwd:design-time-name="245601fa-b1fe-4fd7-99df-46a705e365ad">
+        <KeyColumn dwd:design-time-name="d2877f32-7dbc-4487-919a-ba249929e13e">
           <DataType>Integer</DataType>
-          <Source xsi:type="ColumnBinding" dwd:design-time-name="308efeed-1257-451a-b75a-d052ea378d19">
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="0188527c-2866-4b11-8318-e5f46a87cf56">
             <TableID>dbo_dim_semester</TableID>
             <ColumnID>year</ColumnID>
           </Source>
@@ -107,14 +137,14 @@
       <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
       <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
     </Attribute>
-    <Attribute dwd:design-time-name="3fd81252-6f6d-4573-9cb1-ae9bd9da1e70">
+    <Attribute dwd:design-time-name="cd657e31-9851-469c-a386-48bf4ae1d6d0">
       <ID>Semester Type</ID>
       <Name>Semester Type</Name>
       <KeyColumns>
-        <KeyColumn dwd:design-time-name="49a68a37-1807-4290-b1bf-9ce9567a3bbd">
+        <KeyColumn dwd:design-time-name="92625b0f-8211-4e99-96da-f91834cc1166">
           <DataType>WChar</DataType>
           <DataSize>1</DataSize>
-          <Source xsi:type="ColumnBinding" dwd:design-time-name="7d601433-4744-464e-8728-01ca2d3d154c">
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="dcfff69d-3f66-4bdf-bd8b-47ce9569d673">
             <TableID>dbo_dim_semester</TableID>
             <ColumnID>semester_type</ColumnID>
           </Source>
@@ -124,13 +154,13 @@
       <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
       <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
     </Attribute>
-    <Attribute dwd:design-time-name="c1bd5011-c888-49fd-893a-1c79b492cf63">
+    <Attribute dwd:design-time-name="22c401fa-da3f-4e88-8b97-e2aa2bf91c33">
       <ID>Study Year</ID>
-      <Name>Study Year</Name>
+      <Name>study year</Name>
       <KeyColumns>
-        <KeyColumn dwd:design-time-name="bc1ffab7-daac-433d-876a-d5e73a7d7891">
+        <KeyColumn dwd:design-time-name="88d9c791-47bb-42c7-aab1-75f28f5dc372">
           <DataType>Integer</DataType>
-          <Source xsi:type="ColumnBinding" dwd:design-time-name="a1e1afe7-99e4-4630-b0c4-13ba9252fb01">
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="230cb275-a868-41d0-b02d-164620ccaf04">
             <TableID>dbo_dim_semester</TableID>
             <ColumnID>study_year</ColumnID>
           </Source>
@@ -140,6 +170,49 @@
       <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
       <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
     </Attribute>
+    <Attribute dwd:design-time-name="269a3bc7-87fa-4f7e-a970-925e82ce91e9">
+      <ID>Semester</ID>
+      <Name>Semester</Name>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="50e657a8-6803-4530-865a-7849cd0507b3">
+          <DataType>Integer</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="5872b676-0a83-40c4-b8f8-659b94c13061">
+            <TableID>dbo_dim_semester</TableID>
+            <ColumnID>semester</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
   </Attributes>
+  <Hierarchies>
+    <Hierarchy dwd:design-time-name="3bb3aa9b-816f-4aa6-be36-195e1bd111e2">
+      <ID>Hierarchy</ID>
+      <Name>Hierarchy</Name>
+      <Levels>
+        <Level dwd:design-time-name="46940a92-5c21-4eca-b166-3b740a1170ad">
+          <ID>Year</ID>
+          <Name>Year</Name>
+          <SourceAttributeID>Year</SourceAttributeID>
+        </Level>
+        <Level dwd:design-time-name="5b06dd3e-791f-4467-ab55-d5201738c2b7">
+          <ID>Semester</ID>
+          <Name>Semester</Name>
+          <SourceAttributeID>Semester</SourceAttributeID>
+        </Level>
+        <Level dwd:design-time-name="a221a809-c2b5-4fcb-b5aa-10f51fe76631">
+          <ID>Study Year</ID>
+          <Name>Study Year</Name>
+          <SourceAttributeID>Study Year</SourceAttributeID>
+        </Level>
+        <Level dwd:design-time-name="c46ed229-e50b-4cbd-9586-a12226db5ef0">
+          <ID>Semester Type</ID>
+          <Name>Semester Type</Name>
+          <SourceAttributeID>Semester Type</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
+  </Hierarchies>
   <ddl300:ProcessingState>Unprocessed</ddl300:ProcessingState>
 </Dimension>
