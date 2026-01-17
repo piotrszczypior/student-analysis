@@ -1,7 +1,7 @@
 \begin{MintedVerbatim}[commandchars=\\\{\}]
-\PYG{+w}{  }\PYG{k}{DROP}\PYG{+w}{ }\PYG{k}{TABLE}\PYG{+w}{ }\PYG{k}{IF}\PYG{+w}{ }\PYG{k}{EXISTS}\PYG{+w}{ }\PYG{p}{[}\PYG{n}{dim\PYGZus{}student\PYGZus{}workload}\PYG{p}{]}\PYG{p}{;}
+\PYG{+w}{  }\PYG{k}{DROP}\PYG{+w}{ }\PYG{k}{TABLE}\PYG{+w}{ }\PYG{k}{IF}\PYG{+w}{ }\PYG{k}{EXISTS}\PYG{+w}{ }\PYG{p}{[}\PYG{n}{student\PYGZus{}semester\PYGZus{}workload}\PYG{p}{]}\PYG{p}{;}
 
-\PYG{+w}{  }\PYG{k}{CREATE}\PYG{+w}{ }\PYG{k}{TABLE}\PYG{+w}{ }\PYG{p}{[}\PYG{n}{dim\PYGZus{}student\PYGZus{}workload}\PYG{p}{]}\PYG{+w}{ }\PYG{p}{(}
+\PYG{+w}{  }\PYG{k}{CREATE}\PYG{+w}{ }\PYG{k}{TABLE}\PYG{+w}{ }\PYG{p}{[}\PYG{n}{student\PYGZus{}semester\PYGZus{}workload}\PYG{p}{]}\PYG{+w}{ }\PYG{p}{(}
 \PYG{+w}{        }\PYG{p}{[}\PYG{n}{student\PYGZus{}id}\PYG{p}{]}\PYG{+w}{ }\PYG{n+nb}{bigint}\PYG{p}{,}
 \PYG{+w}{        }\PYG{p}{[}\PYG{n}{semester\PYGZus{}id}\PYG{p}{]}\PYG{+w}{ }\PYG{n+nb}{bigint}\PYG{p}{,}
 \PYG{+w}{        }\PYG{p}{[}\PYG{n}{grade\PYGZus{}count}\PYG{p}{]}\PYG{+w}{ }\PYG{n+nb}{int}\PYG{p}{,}

@@ -1,5 +1,5 @@
 \begin{MintedVerbatim}[commandchars=\\\{\}]
-\PYG{+w}{  }\PYG{k}{INSERT}\PYG{+w}{ }\PYG{k}{INTO}\PYG{+w}{ }\PYG{n}{dim\PYGZus{}student\PYGZus{}workload}
+\PYG{+w}{  }\PYG{k}{INSERT}\PYG{+w}{ }\PYG{k}{INTO}\PYG{+w}{ }\PYG{n}{student\PYGZus{}semester\PYGZus{}workload}
 \PYG{+w}{  }\PYG{k}{SELECT}
 \PYG{+w}{      }\PYG{n}{student\PYGZus{}id}\PYG{p}{,}
 \PYG{+w}{      }\PYG{n}{semester\PYGZus{}id}\PYG{p}{,}

@@ -1,1 +1,112 @@
-\section{SASS}
+\section{SSAS}
+
+Po zakończeniu procesu ETL, dane zostały wykorzystane do budowy kostki OLAP przy pomocy narzędzia SQL Server Analysis Services (SSAS). Celem tego etapu było umożliwienie efektywnej analizy ocen w wielu przekrojach analitycznych, takich jak cechy studentów, prowadzących oraz kursów.
+
+\subsection{Źródło danych i widok}
+
+Po zdefiniowaniu połączenia został stworzony widok (Data Source View), który zawiera tabele faktów oraz tabele wymiarów. Widok ten stanowi podstawę dla kostki OLAP i definiuje relacje pomiędzy tabelami.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=.8\linewidth]{img/schema.png}
+    \caption{Schemat gwiazdy po transformacjach ETL - tabela faktów Fact\_grades oraz tabele wymiarów}
+    \label{fig:star-schema}
+\end{figure}
+
+\noindent
+Schemat gwiazdy (rys. \ref{fig:star-schema}) składa się z centralnej tabeli faktów \texttt{Fact\_grades} oraz dodatkowych tabel dotyczących obciążenia: \texttt{teacher\_semester\_workload} i \texttt{student\_semester\_workload}, wraz z otaczającymi je tabelami wymiarów.
+
+\subsection{Struktura kostki OLAP}
+Następnie została stworzona kostka OLAP, a przy pomocy kreatora zostały zdefiniowane wymiary oraz miary analityczne.
+
+\subsubsection{Wymiary}
+Wymiary zostały zdefiniowane poprzez kreator wymiarów \texttt{Dimension Wizard}. Każdy wymiar reprezentuje określony aspekt analizy i umożliwia grupowanie oraz filtrowanie danych według różnych kryteriów.
+
+\begin{figure}[H]
+  \centering
+    \includegraphics[width=.4\linewidth]{img/cube-dim.png}
+    \caption{Zdefiniowane wymiary w kostce OLAP}
+    \label{fig:cube-dims}
+\end{figure}
+
+\clearpage
+\noindent
+Poniżej znajduje się opis zdefiniowanych wymiarów (rys. \ref{fig:cube-dims}):
+
+\begin{itemize}
+  \item Wymiar \texttt{Dim Semester} - wymiar zbudowany na podstawie tabeli \texttt{dim\_semester}
+  \item Wymiar \texttt{Dim Students} - wymiar zbudowany na podstawie tabeli \texttt{dim\_students}
+  \item Wymiar \texttt{Dim Courses} - wymiar zbudowany na podstawie tabeli \texttt{dim\_courses}
+  \item Wymiar \texttt{Dim Teachers} - wymiar zbudowany na podstawie tabeli \texttt{dim\_teachers}
+  \item Wymiar \texttt{Dim Teacher Titles} - wymiar zbudowany na podstawie tabeli \texttt{dim\_teacher\_titles}
+  \item Wymiar \texttt{Dim Exam Type} - wymiar zbudowany na podstawie kolumny \texttt{exam} z tabeli \texttt{fact\_grades}
+  \item Wymiar \texttt{Dim Teacher Semester Workload Tier} - wymiar zbudowany na podstawie kolumny \texttt{workload\_tier} z tabeli \texttt{teacher\_semester\_workload}
+\end{itemize}
+
+\subsubsection{Hierarchie w wymiarach}
+
+W wybranych wymiarach zostały zdefiniowane hierarchie, które umożliwiają wielopoziomową nawigację po danych. Hierarchie pozwalają na analizę danych na różnych poziomach szczegółowości. 
+
+\noindent
+Przykładem takiej hierarchii jest hierarchia zdefiniowana w wymiarze \texttt{Dim Semester}. Hierarchia ta umożliwia analizę danych w następujących poziomach przedstawionych na rysunku \ref{fig:hierarchy}. ilustruje ona działanie operacji drill-down, gdzie użytkownik może przejść od danych zagregowanych rocznych do bardziej szczegółowych semestralnych danych.
+
+\begin{figure}[H]
+    \centering
+      \begin{subfigure}{0.45\textwidth}
+        \centering
+        \includegraphics[width=0.4\linewidth]{img/time-hierarchy.png}
+        \caption{Hierarchia czasu w wymiarze Semester}
+        \label{fig:time-hierarchy}
+    \end{subfigure}
+    \begin{subfigure}{0.45\textwidth}
+        \centering
+        \includegraphics[width=0.6\linewidth]{img/hierarchy.png}
+        \caption{Przykładowe dane w hierarchii z operacją drill-down}
+        \label{fig:hierarchy}
+    \end{subfigure}
+    \caption{Hierarchia czasu w kostce OLAP}
+    \label{fig:cube-hierarchies}
+\end{figure}
+
+
+
+\subsubsection{Grupy miar}
+
+Następnie wymiary zostały dodane do nowo utworzonej kostki OLAP. W zakładce \texttt{Cube Structure} zostały zdefiniowane tabele faktów jako nowe grupy miar (\texttt{Measure Group}). Każda grupa miar reprezentuje zestaw powiązanych ze sobą metryk analitycznych pochodzących z określonej tabeli faktów.
+
+\begin{figure}[H]
+  \centering
+    \includegraphics[width=.5\linewidth]{img/cube-measures.png}
+    \caption{Grupy miar zdefiniowane w kostce OLAP}
+    \label{fig:cube-measures}
+\end{figure}
+
+Na rysunku \ref{fig:cube-measures} przedstawiono zdefiniowane grupy miar, które zawierają podstawowe metryki takie jak liczba ocen, suma punktów oraz liczba pozytywnych wyników.
+
+\subsubsection{Miary wyliczane}
+
+Oprócz podstawowych miar pochodzących bezpośrednio z tabel faktów, za pomocą funkcji \texttt{Calculated Member} w zakładce \texttt{Calculations} zostały dodane miary wyliczane w języku MDX (Multidimensional Expressions). Miary wyliczane zdefiniowane są na podstawie istniejących miar.
+\clearpage
+\vspace{0.4cm}
+\noindent
+\textbf{Average Grade}
+
+\noindent
+Miara wyliczająca średnią arytmetyczną ocen poprzez podzielenie sumy ocen przez liczbę ocen:
+
+\begin{minted}{sql}
+  [Measures].[Grade] / [Measures].[Fact Grades Count]
+\end{minted}
+
+\vspace{0.4cm}
+\noindent
+\textbf{Pass Rate}
+
+\noindent
+Miara obliczająca procent pozytywnych ocen w stosunku do wszystkich przyznanych ocen:
+
+\begin{minted}{sql}
+  [Measures].[Pass] / [Measures].[Fact Grades Count]
+\end{minted}
+
+

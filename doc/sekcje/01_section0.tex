@@ -1,6 +1,6 @@
 \section{ETL}
 
-W ramach realizacji systemu Business Intelligence opracowano proces ETL (Extract, Transform, Load), odpowiedzialny za pozyskanie, przetworzenie oraz załadowanie danych do hurtowni. Dane źródłowe w formacie CSV zostały poddane wieloetapowej obróbce, obejmującej ekstrakcję z plików, walidację oraz transformację do struktury zgodnej z modelem analitycznym.
+W ramach realizacji systemu Business Intelligence opracowano proces ETL (Extract, Transform, Load), odpowiedzialny za pozyskanie, przetworzenie oraz załadowanie danych do hurtowni. Dane źródłowe w formacie CSV zostały poddane obróbce, obejmującej ekstrakcję z plików, walidację oraz transformację do struktury zgodnej z modelem analitycznym.
 
 Implementacja procesu ETL obejmowała następujące etapy:
 
@@ -17,6 +17,22 @@ Implementacja procesu ETL obejmowała następujące etapy:
 Wszystkie operacje ETL zostały zautomatyzowane w postaci pakietów SSIS, w celu zapewnia powtarzalność procesu oraz możliwość regularnej aktualizacji danych w systemie.
 
 \subsection{Stworzenie tabel Staging}
+
+W pierwszym etapie procesu ETL utworzono tabele stagingowe, pełniące rolę warstwy pośredniej pomiędzy źródłowymi plikami CSV a docelową strukturą hurtowni danych. Tabele staging służą do bezpośredniego załadowania surowych danych z plików zewnętrznych, umożliwiając ich późniejsze czyszczenie, walidację oraz transformację bez ingerencji w dane źródłowe. Strukturę tabel stagingowych zaprojektowano w taki sposób, aby odzwierciedlała format danych wejściowych, jednocześnie umożliwiając elastyczne przetwarzanie w kolejnych etapach ETL.
+
+Przykładowa struktura tabeli stagingowej dla danych o ocenach:
+
+\begin{minted}{sql}
+  CREATE TABLE [stg_grades] (
+      [semester] tinyint,
+      [year] int,
+      [course] varchar(10),
+      [teacher_id] bigint,
+      [grade] real,
+      [exam] varchar(1),
+      [student_id] bigint
+  );  
+\end{minted}
 
 \subsection{Czyszczenie danych}
 
@@ -141,6 +157,7 @@ Analogicznie uzupełniono tabelę \texttt{stg\_course\_group} o kursy występuj�
   GROUP BY g.course;
 \end{minted}
 
+\clearpage
 \subsection{Wzbogacenie danych o kolumny analityczne}
 
 W celu umożliwienia zaawansowanych analiz rozszerzono strukturę tabel o kolumny pochodne zawierające przetworzone wartości analityczne.
@@ -309,27 +326,28 @@ Załadowano dane do tabeli faktów na podstawie połączenia tabeli \texttt{stg\
   ON g.semester = s.semester AND g.year = s.year;
 \end{minted}
 
-\subsection{Dodatkowe tabele wymiarów}
+\subsection{Dodatkowe tabele faktów}
 
 \subsubsection*{Tabela Teacher Workload}
 
 \noindent
-Utworzono dodatkowo nową tabelę wymiarową \texttt{dim\_teacher\_workload} agregującą metryki obciążenia nauczycieli w poszczególnych semestrach, obejmujące liczbę wystawionych ocen, prowadzonych kursów, ocenianych studentów, liczbę egzaminów i testów oraz współczynnik zdawalności:
+Utworzono dodatkowo nową tabelę \texttt{teacher\_semester\_workload} agregującą metryki obciążenia nauczycieli w poszczególnych semestrach, obejmujące liczbę wystawionych ocen, prowadzonych kursów, ocenianych studentów, liczbę egzaminów i testów oraz współczynnik zdawalności:
 
 \begin{minted}{sql}
-  DROP TABLE IF EXISTS dim_teacher_workload;
+  DROP TABLE IF EXISTS teacher_semester_workload;
 
-  CREATE TABLE [dim_teacher_workload] (
-        [teacher_id] bigint,
-        [semester_id] bigint,
-        [grade_count] int,
-        [course_count] int,
-        [student_count] int,
-        [exam_count] int,
-        [test_count] int,
-        [pass_rate] DECIMAL(5,2)
+  CREATE TABLE [teacher_semester_workload] (
+      teacher_id BIGINT NOT NULL,
+      semester_id BIGINT NOT NULL,
+      
+      workload_tier VARCHAR(20),
 
-        CONSTRAINT PK_teacher_workload PRIMARY KEY (teacher_id, semester_id)
+      student_count int,
+      exam_count int,
+      test_count int,
+      exam_test_ratio decimal(5,2),
+
+      CONSTRAINT PK_student_workload_2 PRIMARY KEY (teacher_id, semester_id)
   );
 \end{minted}
 
@@ -337,29 +355,36 @@ Utworzono dodatkowo nową tabelę wymiarową \texttt{dim\_teacher\_workload} agr
 Załadowano dane do tabeli wymiarowej na podstawie agregacji danych z tabeli faktów \texttt{fact\_grades}:
 
 \begin{minted}{sql}
-  INSERT INTO dim_teacher_workload
-  SELECT
-    teacher_id,
-    semester_id,
-    COUNT(*) as grade_count,
-    COUNT(DISTINCT course) as course_count,
-    COUNT(DISTINCT student_id) as student_count,
-    SUM(CASE WHEN exam = 'E' THEN 1 ELSE 0 END) as exam_count,
-    SUM(CASE WHEN exam = 'T' THEN 1 ELSE 0 END) as test_count,
-    CAST(SUM(CAST(pass as int)) * 100.0 / COUNT(*) AS DECIMAL(5,2)) as pass_rate
-  FROM fact_grades
-  GROUP BY teacher_id, semester_id
-  ORDER BY teacher_id, semester_id;
+  INSERT INTO [teacher_semester_workload] (teacher_id, semester_id, 
+          workload_tier, student_count, exam_count, test_count, exam_test_ratio)
+  SELECT 
+      teacher_id,
+      semester_id,
+      CASE 
+          WHEN COUNT(DISTINCT student_id) < 50 THEN 'light'
+          WHEN COUNT(DISTINCT student_id) < 150 THEN 'normal'
+          ELSE 'heavy'
+      END,
+      COUNT(DISTINCT student_id) AS student_count,
+      SUM(CASE WHEN exam = 'E' THEN 1 ELSE 0 END) AS exam_count,
+      SUM(CASE WHEN exam = 'T' THEN 1 ELSE 0 END) AS test_count,
+      CASE 
+          WHEN SUM(CASE WHEN exam = 'T' THEN 1 ELSE 0 END) = 0 THEN NULL
+          ELSE CAST(SUM(CASE WHEN exam = 'E' THEN 1 ELSE 0 END) AS DECIMAL(5,2)) / 
+              CAST(SUM(CASE WHEN exam = 'T' THEN 1 ELSE 0 END) AS DECIMAL(5,2))
+      END AS exam_test_ratio
+  FROM [fact_grades]
+  GROUP BY teacher_id, semester_id;
 \end{minted}
 
-\subsubsection*{Tabela Student Workload}
+\subsubsection*{Tabela Student Semester Workload}
 
-Podobnie została utworzona tabela \texttt{Student Workload} agregująca metryki obciążenia studentów w poszczególnych semestrach.
+Podobnie została utworzona tabela \texttt{Student Semester Workload} agregująca metryki obciążenia studentów w poszczególnych semestrach.
 
 \begin{minted}{sql}
-  DROP TABLE IF EXISTS [dim_student_workload];
+  DROP TABLE IF EXISTS [student_semester_workload];
 
-  CREATE TABLE [dim_student_workload] (
+  CREATE TABLE [student_semester_workload] (
         [student_id] bigint,
         [semester_id] bigint,
         [grade_count] int,
@@ -373,11 +398,13 @@ Podobnie została utworzona tabela \texttt{Student Workload} agregująca metryki
   );
 \end{minted}
 
+\clearpage
+
 \noindent
 Załadowano dane do tabeli wymiarowej na podstawie agregacji danych z tabeli faktów fact grades:
 
 \begin{minted}{sql}
-  INSERT INTO dim_student_workload 
+  INSERT INTO student_semester_workload 
   SELECT 
       student_id,
       semester_id,
@@ -415,15 +442,4 @@ Przykładowe usunięcie tabeli staging:
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{img/pipeline.pdf}
 \caption{Diagram przepływu danych w procesie ETL zrealizowanym w narzędziu SSIS}
 \label{fig:etl-pipeline}
-\end{figure}
-
-
-\section{}
-
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=.8\linewidth]{img/star-schema.png}
-    \caption{Schemat po transformacjach ETL}
-    \label{fig:enter-label}
 \end{figure}

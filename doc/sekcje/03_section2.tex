@@ -1,7 +1,71 @@
 \section{Analiza}
 
-czy mocno obciążeni nauczyciele srodzej oceniali?
+Przykładowe analizy kostki OLAP zostały wykonane przy użyciu narzędzia Cube Browser dostępnego w SQL Server Management Studio oraz w tabelach przestawnych w programie Microsoft Excel. Poniżej przedstawiono wyniki analiz odpowiadających na kluczowe pytania biznesowe dotyczące wpływu różnych czynników na wyniki studentów i obciążenia studentów i nauczycieli.
 
-czy mocno obciążeni nayczyciele zadawali wiecej examinów
+\begin{figure}[H]
+  \centering
+    \includegraphics[width=.8\linewidth]{img/browser.png}
+    \caption{Przykładowa analiza w narzędziu Cube Browser}
+    \label{fig:browser}
+\end{figure}
 
-Czy obciążenie nauczyciela miało wpływ na zdawalność? (pass rate)
+\noindent
+Na rysunku \ref{fig:browser} przedstawiono interfejs narzędzia Cube Browser, w którym przeprowadzono przykładową analizę obciążenia studenta, zdawalości oraz średniej ocen. Analiza uwzględnia wymiary: semestr, forma zaliczenia oraz specjalność studenta. 
+
+\clearpage
+\subsection{Pytania analityczne}
+
+\subsubsection{Wpływ typu kursu na średnią ocen i zdawalność}
+
+Pierwsza analiza dotyczy zależności między typem kursu a osiąganymi wynikami studentów. Na rysunku \ref{fig:analysis-1} przedstawiono średnią ocen oraz wskaźnik zdawalności (pass rate) w zależności od kategorii kursu.
+
+\begin{figure}[H]
+  \centering
+    \includegraphics[width=.8\linewidth]{img/analysis_1.png}
+    \caption{Średnia ocen i zdawalność w zależności od typu kursu}
+    \label{fig:analysis-1}
+\end{figure}
+
+\subsubsection{Wpływ tytułu naukowego prowadzącego na wyniki studentów}
+
+Druga analiza bada zależność między tytułem naukowym prowadzącego a średnią ocen oraz zdawalnością. Wykorzystano hierarchię drill-down w wymiarze tytułów: od skróconego tytułu (title) do pełnej nazwy (title long). Wyniki przedstawiono na rysunku \ref{fig:analysis-2}.
+
+\begin{figure}[H]
+  \centering
+    \includegraphics[width=.5\linewidth]{img/analysis-2.png}
+    \caption{Średnia ocen i zdawalność w zależności od tytułu prowadzącego (hierarchia drill-down)}
+    \label{fig:analysis-2}
+\end{figure}
+
+\subsubsection{Wpływ jednostki prowadzącego na wyniki studentów}
+
+Kolejna analiza sprawdza, czy jednostka organizacyjna prowadzącego (wydział, instytut) ma wpływ na wyniki studentów. Zastosowano hierarchię drill-down: wydział (faculty) → instytut (institute). Wyniki zaprezentowano na rysunku \ref{fig:analysis-3}.
+
+\begin{figure}[H]
+  \centering
+    \includegraphics[width=.5\linewidth]{img/analysis-3.png}
+    \caption{Średnia ocen i zdawalność w zależności od jednostki prowadzącego (hierarchia drill-down)}
+    \label{fig:analysis-3}
+\end{figure}
+
+\subsubsection{Zależność wyników od formy zaliczenia i roku studiów}
+
+Analiza przedstawiona na rysunku \ref{fig:analysis-4} bada zdawalność, średnią ocen oraz liczbę ocen w zależności od typu formy zaliczenia (egzamin lub kolokwium) oraz roku studiów studenta.
+
+\begin{figure}[H]
+  \centering
+    \includegraphics[width=.5\linewidth]{img/analysis-4.png}
+    \caption{Zdawalność, średnia ocen i liczba ocen w zależności od formy zaliczenia i roku studiów}
+    \label{fig:analysis-4}
+\end{figure}
+
+\subsubsection{Wpływ obciążenia nauczyciela na wyniki studentów}
+
+Najważniejsza analiza dotyczy wpływu obciążenia dydaktycznego nauczyciela na wyniki studentów. Badano średnią ocen, zdawalność, liczbę studentów oraz liczbę egzaminów w zależności od semestru (zimowy W, letni S), poziomu obciążenia oraz tytułu prowadzącego. Wyniki zaprezentowano na rysunku \ref{fig:analysis-6}.
+
+\begin{figure}[H]
+  \centering
+    \includegraphics[width=.7\linewidth]{img/analysis-6.png}
+    \caption{Wpływ obciążenia nauczyciela na wyniki studentów w zależności od semestru i tytułu}
+    \label{fig:analysis-6}
+\end{figure}
